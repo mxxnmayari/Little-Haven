@@ -315,11 +315,85 @@ body{background-color:#30204c;background-image:linear-gradient(90deg,#ffffff08 1
 .entry-disc{box-shadow:0 0 0 5px #ffffff55,4px 5px 0 #6d789c88}
 .entry-cassette{box-shadow:inset 0 0 0 4px #ffffff55,4px 5px 0 #6d789c88}
 @media(max-width:600px){.login-screen{background-size:36px 36px,36px 36px,72px 72px,72px 72px,100% 100%}}
+
+
+/* v21 — cleaner early-2000s desktop look; remove decorative clipart and cramped playlist labels */
+/* Intro: keep the classic access window, remove all floating decorative artwork. */
+#loginScreen .entry-y2k-art{display:none!important}
+#loginScreen{background-color:#514878!important;background-image:linear-gradient(135deg,#777ba5 0%,#77739b 28%,#a18aa9 52%,#777f9e 76%,#4d527b 100%)!important;background-size:cover!important}
+#loginScreen:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:linear-gradient(90deg,#fff 1px,transparent 1px),linear-gradient(#fff 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(135deg,#000 0%,transparent 72%)}
+#loginScreen .login-card{position:relative;box-shadow:4px 5px 0 #30294d88,0 18px 45px #211b3b66!important}
+
+/* Home banner: understated retro desktop wallpaper, no stickers, discs, butterflies or orbit rings. */
+#homeBannerArt.y2k-banner{position:relative;min-height:220px!important;border:2px solid #fff!important;border-radius:3px!important;overflow:hidden!important;background-color:#8c9fc0!important;background-image:linear-gradient(135deg,transparent 0 48%,#ffffff16 48% 52%,transparent 52%),linear-gradient(45deg,#d9d5e8 0%,#aab9d2 34%,#8c9ebc 68%,#c9b7d1 100%)!important;box-shadow:inset 2px 2px #fff,inset -3px -3px #697b9b,4px 4px 0 #81758e!important}
+#homeBannerArt.y2k-banner:before{content:""!important;position:absolute!important;inset:0!important;width:auto!important;height:auto!important;border:0!important;border-radius:0!important;box-shadow:none!important;opacity:.22;background-image:linear-gradient(90deg,#fff 1px,transparent 1px),linear-gradient(#fff 1px,transparent 1px)!important;background-size:18px 18px!important}
+#homeBannerArt.y2k-banner:after{content:""!important;position:absolute!important;width:72%!important;height:58%!important;left:14%!important;top:21%!important;border:1px solid #fff!important;border-radius:2px!important;transform:none!important;background:linear-gradient(#f8f8fb,#dce4f0)!important;box-shadow:inset 1px 1px #fff,3px 4px 0 #64748a88!important}
+#homeBannerArt .banner-sticker{display:none!important}
+#homeBannerArt .banner-label{position:absolute;z-index:2;inset:21% 14% auto;height:58%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#4b5276!important;font:700 clamp(15px,2.5vw,22px) Silkscreen,monospace!important;letter-spacing:.04em!important;line-height:1.6!important;text-shadow:1px 1px #fff!important;transform:none!important}
+#homeBannerArt .banner-label small{color:#65718e!important;font:7px Silkscreen,monospace!important;letter-spacing:.08em!important;text-shadow:none!important}
+
+/* Spotify tab: remove the cramped decorative side labels that were clipping into unreadable text. */
+#playlists .content-body:before,
+#playlists .media-card:before,
+#playlists .media-card:after{content:none!important;display:none!important}
+#playlists .media-card{padding:14px!important;overflow:hidden!important;min-width:0!important}
+#playlists .media-card h3{display:block!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;line-height:1.65!important;margin:0 0 9px!important}
+#playlists .spotify-frame{display:block;max-width:100%;width:100%;box-sizing:border-box}
+
+
+
+/* v22 — coordinated Y2K desktop wallpaper and matching home banner */
+/* Intro: keep the nostalgic lavender/blue desktop wallpaper, with no floating objects. */
+#loginScreen{
+  background-color:#aebcda!important;
+  background-image:
+    linear-gradient(90deg,transparent 0 31px,#ffffff20 31px 32px,transparent 32px 63px),
+    linear-gradient(0deg,transparent 0 31px,#ffffff20 31px 32px,transparent 32px 63px),
+    linear-gradient(135deg,#91a8cf 0%,#b9c4df 34%,#d3c5df 67%,#9eafd0 100%)!important;
+  background-size:64px 64px,64px 64px,100% 100%!important;
+  background-position:0 0,0 0,center!important;
+}
+#loginScreen:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.65;
+  background:
+    linear-gradient(90deg,transparent 0 7%,#f8f8ff55 7% 7.12%,transparent 7.12% 92.8%,#f8f8ff44 92.8% 92.92%,transparent 92.92%),
+    linear-gradient(0deg,transparent 0 9%,#f8f8ff44 9% 9.12%,transparent 9.12% 90.8%,#f8f8ff44 90.8% 90.92%,transparent 90.92%),
+    radial-gradient(ellipse at 50% 50%,#ffffff24 0%,transparent 65%);
+  box-shadow:inset 0 0 0 8px #e9e9f5,inset 0 0 0 10px #8799ba;
+}
+#loginScreen .entry-y2k-art{display:none!important}
+#loginScreen .login-card{box-shadow:4px 5px 0 #59688766,0 18px 42px #35415e44!important}
+
+/* Home banner: a tidy desktop-window motif using the same lavender/blue palette. */
+#homeBannerArt.y2k-banner{
+  min-height:220px!important;position:relative!important;overflow:hidden!important;
+  border:2px solid #f8f8ff!important;border-radius:4px!important;
+  background-color:#aabbd9!important;
+  background-image:
+    linear-gradient(90deg,transparent 0 23px,#ffffff20 23px 24px,transparent 24px 47px),
+    linear-gradient(0deg,transparent 0 23px,#ffffff20 23px 24px,transparent 24px 47px),
+    linear-gradient(135deg,#8fa7ce 0%,#c5c9df 48%,#d8c5dc 100%)!important;
+  background-size:48px 48px,48px 48px,100% 100%!important;
+  box-shadow:inset 2px 2px #fff,inset -3px -3px #7889aa,4px 4px 0 #716d89!important;
+}
+#homeBannerArt.y2k-banner:before{content:""!important;position:absolute!important;inset:16px!important;width:auto!important;height:auto!important;border:1px solid #ffffffcc!important;border-radius:2px!important;box-shadow:inset 1px 1px #fff,3px 4px 0 #66779566!important;background:linear-gradient(180deg,#f4f5fa 0 25px,#e8edf6 25px 100%)!important;opacity:1!important}
+#homeBannerArt.y2k-banner:after{content:""!important;position:absolute!important;left:calc(50% - 31px)!important;top:65px!important;width:62px!important;height:62px!important;border:1px solid #fff!important;border-radius:50%!important;background:radial-gradient(circle at 35% 30%,#fff 0 5%,#dce5f4 30%,#9eafd0 68%,#7287ae 100%)!important;box-shadow:inset 2px 2px 5px #fff,0 3px 0 #7183a4!important}
+#homeBannerArt .banner-sticker{display:none!important}
+#homeBannerArt .banner-label{
+  position:absolute!important;z-index:2!important;inset:137px 10px auto!important;height:auto!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;
+  color:#465b83!important;font:700 clamp(11px,2vw,16px) Silkscreen,monospace!important;
+  letter-spacing:.05em!important;line-height:1.5!important;text-align:center!important;
+  text-shadow:1px 1px #fff!important;transform:none!important;
+}
+#homeBannerArt .banner-label small{font:7px Silkscreen,monospace!important;letter-spacing:.08em!important;color:#697b9b!important;text-shadow:none!important}
+@media(max-width:600px){#homeBannerArt.y2k-banner{min-height:195px!important}#homeBannerArt .banner-label{inset:127px 8px auto!important;font-size:10px!important}#homeBannerArt.y2k-banner:after{top:57px!important;width:54px!important;height:54px!important;left:calc(50% - 27px)!important}}
+
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
 <main id="desktop" class="desktop hidden"><div class="desktop-top"><span class="brand">TANGI'S LITTLE HAVEN // ONLINE</span><span id="clock">MY LITTLE CORNER OF THE INTERNET</span></div><div class="desktop-grid"><nav class="dock folder-nav" aria-label="Main navigation"><div class="folder-nav-label">YOUR LITTLE SPACE</div><button class="active" data-section="home"><span class="folder-tab"></span><span class="folder-name">Back to Haven</span><span class="folder-meta">01 / HOME</span></button><button data-section="why"><span class="folder-tab"></span><span class="folder-name">Open Love.exe</span><span class="folder-meta">02 / THE NOTE</span></button><button data-section="playlists"><span class="folder-tab"></span><span class="folder-name">Spotify.mp3</span><span class="folder-meta">03 / SOUNDTRACK</span></button><button data-section="songs"><span class="folder-tab"></span><span class="folder-name">Heartbeat.mp3</span><span class="folder-meta">04 / DEDICATED</span></button><button data-section="hearts"><span class="folder-tab"></span><span class="folder-name">Read_Me.txt</span><span class="folder-meta">05 / READ ME WHEN</span></button><button data-section="guestbook"><span class="folder-tab"></span><span class="folder-name">Send Love.msg</span><span class="folder-meta">07 / GUESTBOOK</span></button><button data-section="admin"><span class="folder-tab"></span><span class="folder-name">Customize</span><span class="folder-meta">08 / OWNER ONLY</span></button></nav><div class="workspace">
-<section id="home" class="page"><div class="chrome welcome"><div class="titlebar"><span id="homeWindowTitle">LOGGED INTO: MY HEART'S HOMEPAGE</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="welcome-body"><div><div class="kicker" id="homeKicker">SYSTEM STATUS: HEARTBEAT SYNCED WITH TANGI</div><h2 id="homeTitle">Tangi's Little Haven</h2><p id="descHome">A little place to pause, listen, read, and find something kind waiting for you. Choose a folder whenever you feel like staying a while.</p><span class="pixel" id="homeSubline" style="font-size:9px;color:#9566bd">HEARTBEAT.EXE // ONLINE</span></div><div class="welcome-art y2k-banner" id="homeBannerArt"><span class="banner-sticker sticker-cd" aria-hidden="true"><i class="drawn-cd"></i></span><span class="banner-sticker sticker-butterfly" aria-hidden="true"><i class="drawn-butterfly"></i></span><span class="banner-sticker sticker-star" aria-hidden="true">✦</span><span class="banner-sticker sticker-headphones" aria-hidden="true"><i class="drawn-headphones"></i></span><span class="banner-label">LOVE.EXE<br><small>♡ DIGITAL DAYDREAM ♡</small></span><span class="banner-sticker sticker-sparkle" aria-hidden="true">✧</span><span class="banner-sticker sticker-note" aria-hidden="true">♫</span></div></div></div><div class="home-bottom"><span class="pixel" id="homeBottomLabel">A PLACE TO COME BACK TO</span><p id="homeBottomText">Nothing to finish. Nothing to hurry. Just take whatever you need from here.</p><div class="home-shortcuts"><button id="shortcut1" data-section="why">OPEN THE LETTER <span>↗</span></button><button id="shortcut2" data-section="playlists">LISTEN A LITTLE <span>↗</span></button><button id="shortcut3" data-section="hearts">FIND A REMINDER <span>↗</span></button></div></div></section>
+<section id="home" class="page"><div class="chrome welcome"><div class="titlebar"><span id="homeWindowTitle">LOGGED INTO: MY HEART'S HOMEPAGE</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="welcome-body"><div><div class="kicker" id="homeKicker">SYSTEM STATUS: HEARTBEAT SYNCED WITH TANGI</div><h2 id="homeTitle">Tangi's Little Haven</h2><p id="descHome">A little place to pause, listen, read, and find something kind waiting for you. Choose a folder whenever you feel like staying a while.</p><span class="pixel" id="homeSubline" style="font-size:9px;color:#9566bd">HEARTBEAT.EXE // ONLINE</span></div><div class="welcome-art y2k-banner" id="homeBannerArt"><span class="banner-sticker sticker-cd" aria-hidden="true"><i class="drawn-cd"></i></span><span class="banner-sticker sticker-butterfly" aria-hidden="true"><i class="drawn-butterfly"></i></span><span class="banner-sticker sticker-star" aria-hidden="true">✦</span><span class="banner-sticker sticker-headphones" aria-hidden="true"><i class="drawn-headphones"></i></span><span class="banner-label">WELCOME HOME<br><small>A LITTLE CORNER OF THE INTERNET</small></span><span class="banner-sticker sticker-sparkle" aria-hidden="true">✧</span><span class="banner-sticker sticker-note" aria-hidden="true">♫</span></div></div></div><div class="home-bottom"><span class="pixel" id="homeBottomLabel">A PLACE TO COME BACK TO</span><p id="homeBottomText">Nothing to finish. Nothing to hurry. Just take whatever you need from here.</p><div class="home-shortcuts"><button id="shortcut1" data-section="why">OPEN THE LETTER <span>↗</span></button><button id="shortcut2" data-section="playlists">LISTEN A LITTLE <span>↗</span></button><button id="shortcut3" data-section="hearts">FIND A REMINDER <span>↗</span></button></div></div></section>
 <section id="why" class="page hidden skin-letter"><div class="chrome content-window"><div class="titlebar"><span>OPEN_LOVE.EXE</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="content-body"><div class="kicker">A NOTE FROM ME TO YOU</div><h2 class="section-heading">Why did I make this?</h2><p class="section-intro" id="descWhy">A little space for all the things I want you to keep.</p><div id="letterList" class="letter-list"></div></div></div></section>
 <section id="playlists" class="page hidden skin-playlists"><div class="chrome content-window"><div class="titlebar"><span>SPOTIFY.MP3</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="content-body"><div class="kicker">A SOUNDTRACK FOR YOU</div><h2 class="section-heading">Spotify.mp3</h2><p class="section-intro" id="descPlaylists">Little collections of songs, saved here for you. Press play right inside each window.</p><div id="playlistList" class="playlist-grid"><div class="media-card"><h3>YOUR FIRST PLAYLIST</h3><p>Playlist embeds added through the customize page will appear here.</p><div class="pixel" style="font-size:8px;color:#946bb9">WAITING FOR YOUR LINK...</div></div></div></div></div></section>
 <section id="songs" class="page hidden skin-songs"><div class="chrome content-window"><div class="titlebar"><span>HEARTBEAT.MP3</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="content-body"><div class="kicker">IF I COULD SEND YOU A FEELING</div><h2 class="section-heading">Heartbeat.mp3</h2><p class="section-intro" id="descSongs">Some songs say the things I don't always know how to put into words.</p><div id="songList" class="song-grid"><div class="media-card"><h3>YOUR SONGS WILL LIVE HERE</h3><p>Add a YouTube link in Customize for a full-song video player. Spotify is used for playlists.</p></div></div><div id="songLetter" class="letter-window hidden"><h3 id="songLetterTitle">FLIP MIXTAPE / READ NOTE</h3><div id="songLetterText" class="letter"></div></div></div></div></section>
