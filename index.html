@@ -224,6 +224,97 @@ body{background-color:#241337;background-image:radial-gradient(ellipse at 18% 8%
 @keyframes segment{to{background:linear-gradient(#f7e5f0,#b6a5c9);box-shadow:inset 0 1px #fff,0 0 5px #cbbbd8}}
 @media(max-width:720px){.welcome-body{grid-template-columns:1fr}.folder-nav{border-radius:5px}.folder-nav button{min-height:58px}.window-grid{grid-template-columns:1fr}.content-body{padding:15px}.custom-panel{padding:12px}}
 
+
+
+/* v19 — authentic early-2000s desktop UI: pixel folders, beveled windows, and tab-specific programs */
+:root{--retro-blue:#4569a8;--retro-blue-dark:#263e78;--retro-lilac:#bca4df;--retro-edge:#76639a;--retro-paper:#fffdf5;--retro-shadow:#39265d}
+body{background-color:#30204c;background-image:linear-gradient(90deg,#ffffff08 1px,transparent 1px),linear-gradient(#ffffff08 1px,transparent 1px),radial-gradient(circle at 18% 18%,#7657a0 0,transparent 30%),linear-gradient(135deg,#30204c,#49336d 55%,#281b42);background-size:24px 24px,24px 24px,auto,auto}
+.desktop{background-color:#49356b;background-image:linear-gradient(90deg,#ffffff0a 1px,transparent 1px),linear-gradient(#ffffff0a 1px,transparent 1px),radial-gradient(ellipse at 50% 0%,#8066a8 0,transparent 55%),linear-gradient(135deg,#463365,#35234f);background-size:24px 24px,24px 24px,auto,auto}
+.desktop-top{padding:8px 11px;border:1px solid #d9d1e8;background:linear-gradient(#f8f7fc,#cfc5df 48%,#b5a7cd);color:#34254e;box-shadow:inset 1px 1px #fff,2px 3px 0 #21163366;font:9px Silkscreen,monospace}
+.desktop-top .brand{color:#49346e;text-shadow:1px 1px white;font:9px Silkscreen,monospace}
+.folder-nav{border:1px solid #eee8f8;border-radius:3px;background:linear-gradient(135deg,#e9e5f1,#c5bad8 55%,#e5e0ed);box-shadow:inset 1px 1px #fff,inset -2px -2px #9688ad,3px 4px 0 #21163355;backdrop-filter:none}
+.folder-nav-label{color:#49366c;font:8px Silkscreen,monospace;border-bottom:1px solid #a99bbd;padding:5px 5px 10px;margin-bottom:8px}
+.folder-nav button{min-height:52px;margin:0 0 6px;padding:8px 6px 7px 43px;border:1px solid transparent;border-radius:2px;color:#34254e;background:transparent;box-shadow:none;text-shadow:none}
+.folder-nav button:before{content:"";position:absolute;left:10px;top:15px;width:23px;height:16px;border:1px solid #8c6caa;border-radius:2px;background:linear-gradient(#fff5bd 0 30%,#e7bd69 31% 100%);box-shadow:inset 1px 1px #fff}
+.folder-nav button:after{content:"";position:absolute;left:12px;top:11px;width:9px;height:5px;border:1px solid #8c6caa;border-bottom:0;border-radius:2px 2px 0 0;background:#f4d98d}
+.folder-nav button:hover,.folder-nav button.active{transform:none;border:1px dotted #57417c;background:#c8b9df88;box-shadow:inset 1px 1px #fff}
+.folder-tab{display:none}.folder-name{font:8px Silkscreen,monospace;color:#34254e;line-height:1.6}.folder-meta{font:6px Silkscreen,monospace;color:#716187;opacity:1}
+.chrome{border:2px solid #f8f7ff;border-radius:3px;background:linear-gradient(135deg,#f7f4fb,#d9d0e8);box-shadow:inset 1px 1px #fff,inset -2px -2px #9e91b5,4px 5px 0 #21163355}
+.titlebar{min-height:31px;padding:6px 8px;border-bottom:2px solid #fff;border-radius:0;background:linear-gradient(90deg,#344f91 0%,#587fc1 45%,#9bb8df 100%);font:8px Silkscreen,monospace;text-shadow:1px 1px #203766;letter-spacing:.02em}
+.win-controls{gap:3px}.win-controls span{width:18px;height:17px;border:1px solid #f5f5ff;border-radius:1px;background:linear-gradient(#fff,#c9d5e8);box-shadow:1px 1px #283b68;color:#283d70;font:bold 11px Arial}
+.content-window{border-radius:3px}.content-body{padding:clamp(13px,2.5vw,22px);background:linear-gradient(135deg,#f8f6fb,#e5deed);color:#403454}
+.kicker{font:7px Silkscreen,monospace;color:#80649f;letter-spacing:.08em}.section-heading{font:700 clamp(16px,2.5vw,22px) Silkscreen,monospace;color:#46336a;line-height:1.55;text-shadow:1px 1px #fff}.section-intro{color:#645775;font-size:11px;line-height:1.8}
+.welcome{border-radius:3px}.welcome-body{background:linear-gradient(135deg,#f7f4fb,#dcd3e9);padding:clamp(16px,3vw,28px)}.welcome h2{font:700 clamp(22px,4vw,35px) Silkscreen,monospace;line-height:1.5;color:#4b3971;text-shadow:2px 2px #fff}.welcome p{color:#57496b;font-size:12px}.welcome-art{border:2px solid #fff;border-radius:3px;background:linear-gradient(135deg,#a6c4e7,#d6c7ec 48%,#e9c6e1);box-shadow:inset 2px 2px #fff,inset -3px -3px #8973a7,4px 4px 0 #8b7aa0;min-height:205px}
+.home-bottom{border:1px solid #fff;border-radius:3px;background:linear-gradient(#e9e4f1,#c9bddb);box-shadow:inset 1px 1px #fff,3px 4px 0 #21163355;color:#433459;padding:15px}.home-bottom .pixel{color:#70568f}.home-bottom p{color:#514565}.home-shortcuts button{border:1px solid #fff;border-radius:2px;background:linear-gradient(#fff,#c9d7ed 48%,#a9bddc);box-shadow:1px 2px 0 #62779e;color:#293e70;font:7px Silkscreen,monospace}.home-shortcuts span{color:#72558f}
+/* Love letter: memo-pad / word processor */
+.skin-letter .content-body{background:linear-gradient(90deg,#e5dfed 0 24px,#fffdf5 24px 100%);padding-left:34px}
+.skin-letter .content-body:before{content:"NOTEPAD  /  PERSONAL MESSAGE";display:block;margin:-3px 0 14px;padding:6px 8px;border:1px solid #b8adca;background:linear-gradient(#f8f7fb,#ddd7e8);color:#68577e;font:7px Silkscreen,monospace;box-shadow:inset 1px 1px #fff}
+.skin-letter .letter-window{position:relative;margin:12px 0;padding:18px 17px 18px 22px;border:1px solid #c9bfd0;border-radius:2px;background:repeating-linear-gradient(to bottom,#fffdf5 0 27px,#d8d9e9 28px 29px);box-shadow:2px 3px 0 #9385a455;color:#43364f}
+.skin-letter .letter-window:before{content:"";position:absolute;left:13px;top:0;bottom:0;border-left:1px solid #e4a8b9}.skin-letter .letter-dear,.skin-letter .letter{color:#43364f}
+/* Playlists: classic media library / aqua player */
+.skin-playlists .content-body{background:linear-gradient(135deg,#e4eff5,#d6e4f0 50%,#e9e0f0)}
+.skin-playlists .content-body:before{content:"MEDIA LIBRARY  |  PLAYLIST COLLECTION";display:block;padding:7px 9px;margin:-2px 0 15px;border:1px solid #a8b8ca;background:linear-gradient(#fff,#d6e4ef);color:#3f6281;font:7px Silkscreen,monospace;box-shadow:inset 1px 1px #fff,2px 2px #9cabc0}
+.skin-playlists .media-card{position:relative;padding:13px;border:1px solid #fff;border-radius:3px;background:linear-gradient(135deg,#faffff,#d4e7f1 55%,#e8def1);box-shadow:inset 1px 1px #fff,inset -1px -1px #9eafc5,3px 4px 0 #8b9fb655}
+.skin-playlists .media-card:before{content:"♫";float:right;display:grid;place-items:center;width:27px;height:27px;border:1px solid #fff;border-radius:50%;background:linear-gradient(#e8faff,#a9cce0);color:#4e7190;font:16px Georgia;box-shadow:0 2px 0 #8ba4ba}
+.skin-playlists .media-card h3{color:#3f6381;font:8px Silkscreen,monospace}.skin-playlists .spotify-frame{border:3px ridge #c2d3e2;border-radius:2px;background:#1d2634}
+/* Mixtape: jewel case and pixel player */
+.skin-songs .content-body{background:linear-gradient(135deg,#eee5f5,#d9d2ed 55%,#d9e5f1)}
+.skin-songs .content-body:before{content:"CD PLAYER  /  NOW PLAYING: HEARTBEAT.MP3";display:block;padding:7px 9px;margin:-2px 0 15px;border:1px solid #b3a5c9;background:linear-gradient(#fff,#ddd3eb);color:#624d83;font:7px Silkscreen,monospace;box-shadow:inset 1px 1px #fff,2px 2px #9889ad}
+.skin-songs .song-card{border:2px solid #fff;border-radius:3px;padding:10px;background:linear-gradient(145deg,#f9f6fc,#d5c9e8);box-shadow:inset 1px 1px #fff,inset -2px -2px #a99abb,3px 4px 0 #796b8e66}
+.skin-songs .song-card:before{border:1px solid #a99abb;border-radius:2px;background:linear-gradient(90deg,#f8f8fb,#d5e3ef,#e8d6ee);color:#584879;font:7px Silkscreen,monospace}
+.skin-songs .mixtape-face{border:2px solid #fff;border-radius:2px;background:linear-gradient(145deg,#fff,#e5dff0 60%,#c9bedc);box-shadow:inset 1px 1px #fff,inset -2px -2px #a89bb8,2px 3px 0 #9585a9}
+.skin-songs .album-art{border:3px ridge #d5d2df;border-radius:2px;box-shadow:2px 3px 0 #82748f}.skin-songs .song-meta h3{font:8px Silkscreen,monospace;color:#4c3b69}.skin-songs .message-button{border:1px solid #fff;border-radius:2px;background:linear-gradient(#8ca9d1,#45679e);box-shadow:1px 2px #344b78;font:7px Silkscreen,monospace}
+/* Jar of hearts: little pixel desktop utility */
+.skin-hearts .content-body{background:linear-gradient(135deg,#f8eaf3,#e7dff1 55%,#d7e5f1)}
+.skin-hearts .content-body:before{content:"HEART UTILITY  /  PICK A REMINDER";display:block;padding:7px 9px;margin:-2px 0 15px;border:1px solid #c5afca;background:linear-gradient(#fff,#f0ddea);color:#815b83;font:7px Silkscreen,monospace;box-shadow:inset 1px 1px #fff,2px 2px #b19ab6}
+.skin-hearts .jar-visual{border:2px solid #fff;border-radius:3px;background:linear-gradient(135deg,#d9c9e9,#f5e3f0 48%,#c9dff0);box-shadow:inset 1px 1px #fff,inset -2px -2px #a99ab8,3px 4px 0 #9d8ba8}
+.skin-hearts .jar{border:4px ridge #fff;border-radius:18px 18px 30px 30px;background:linear-gradient(90deg,#ffffffaa,#e4efff55 45%,#ffffff88);box-shadow:inset 5px 0 8px #fff9,inset -5px 0 8px #9b83b455,3px 4px 0 #9382a5}
+.skin-hearts .feeling{border:1px solid #fff;border-left:4px solid var(--feeling);border-radius:2px;background:linear-gradient(#fff,#e8e0ef);box-shadow:1px 2px 0 #aa9ab7;color:#514365;font-size:10px}.skin-hearts .feeling:hover{transform:translateY(-1px);box-shadow:1px 3px 0 #9b89ae}
+/* Guestbook: inbox / instant messenger window */
+#guestbook .content-body{background:linear-gradient(135deg,#e5edf5,#e4dff0)}
+#guestbook .content-body:before{content:"INBOX  /  NEW MESSAGE COMPOSER";display:block;padding:7px 9px;margin:-2px 0 15px;border:1px solid #aebbd0;background:linear-gradient(#fff,#d6e0ef);color:#496589;font:7px Silkscreen,monospace;box-shadow:inset 1px 1px #fff,2px 2px #91a2bb}
+#guestbook .guestbook-aside{border:2px solid #fff;border-radius:3px;background:linear-gradient(145deg,#f9fbff,#d4e3f2 55%,#e8dff1);box-shadow:inset 1px 1px #fff,3px 4px 0 #8e9db366}
+#guestbook .guestbook-stamp{border:2px dotted #7894b7;border-radius:3px;background:linear-gradient(#fff,#dce9f6);color:#4d6c93;transform:rotate(-3deg)}
+#guestbook .editor input,#guestbook .editor textarea,#guestbook .editor-select{border:2px inset #b5c2d4;border-radius:2px;background:#fff;color:#3e4e65}
+/* Customize: control panel, classic settings app */
+#admin .content-body{background:linear-gradient(135deg,#e8e4ef,#d4ccdf)}
+#admin .admin-note,#admin .custom-panel{border:1px solid #fff;border-radius:2px;background:linear-gradient(#f9f8fc,#ded8e9);box-shadow:inset 1px 1px #fff,2px 3px 0 #a296b4}
+#admin .custom-tabs{border:1px solid #a89bb9;border-radius:2px;background:linear-gradient(#f7f5fa,#cfc6dc);box-shadow:inset 1px 1px #fff;padding:7px}
+#admin .custom-tab{border:1px solid #fff;border-radius:2px;background:linear-gradient(#fff,#d8d2e4);box-shadow:1px 2px 0 #a197b0;color:#514267;font:7px Silkscreen,monospace}
+#admin .custom-tab.active{background:linear-gradient(#c7d9ef,#7f9dc5);color:#fff;text-shadow:1px 1px #425b83;box-shadow:1px 2px #526d98}
+#admin .editor input,#admin .editor textarea,#admin input{border:2px inset #b7adc6;border-radius:2px;background:#fff;color:#403454}
+.primary,.soft-button{border:1px solid #fff;border-radius:2px;background:linear-gradient(#fff,#d9d3e6 48%,#b9aacd);color:#44365e;box-shadow:1px 2px 0 #9283a8;font:7px Silkscreen,monospace;text-shadow:0 1px #fff}
+.primary{background:linear-gradient(#d9e8f8,#8ea9d0 48%,#6485b6);color:#fff;text-shadow:1px 1px #405b89;box-shadow:1px 2px 0 #425d8d}
+.player-dock{border:2px solid #fff;border-radius:3px;background:linear-gradient(#f8f6fb,#d8d0e6);box-shadow:4px 5px 0 #21163366}.player-head{background:linear-gradient(90deg,#344f91,#7298ce);font:7px Silkscreen,monospace}
+.taskbar{display:flex;background:linear-gradient(90deg,#344f91,#718fc0 55%,#465c91);border-top:2px solid #dfe9fa;font:8px Silkscreen,monospace}.taskbar .start{border:1px solid #fff;border-radius:2px;background:linear-gradient(#fff,#d6e5f5);box-shadow:1px 2px #283d6a;color:#354f83;font:8px Silkscreen,monospace}
+@media(max-width:720px){.desktop-top{font-size:7px}.folder-nav{border-radius:2px}.folder-nav button{padding-left:38px}.folder-name{font-size:7px}.welcome-art{min-height:150px}.skin-letter .content-body{padding-left:25px}.skin-letter .content-body:before{font-size:6px}.content-body:before{letter-spacing:0}.titlebar{font-size:7px}.taskbar{padding:6px 9px}}
+
+
+/* v20 — intro wallpaper: nostalgic early-2000s desktop, less dreamy gradient */
+.login-screen{
+  background-color:#9db5d7;
+  background-image:
+    linear-gradient(90deg, transparent 0 24px, #ffffff18 24px 25px, transparent 25px 49px),
+    linear-gradient(0deg, transparent 0 24px, #ffffff18 24px 25px, transparent 25px 49px),
+    linear-gradient(90deg, #c8d7ec 0 12px, transparent 12px 100%),
+    linear-gradient(0deg, #c8d7ec 0 12px, transparent 12px 100%),
+    linear-gradient(135deg,#a9bfdf 0%,#c7c6e2 48%,#d9c2df 100%);
+  background-size:50px 50px,50px 50px,100px 100px,100px 100px,100% 100%;
+  background-position:0 0,0 0,14px 18px,14px 18px,0 0;
+  position:relative;
+  isolation:isolate;
+}
+.login-screen:before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0 8%,#ffffff30 8% 8.15%,transparent 8.15% 91%,#ffffff24 91% 91.15%,transparent 91.15%),
+    linear-gradient(0deg,transparent 0 12%,#ffffff26 12% 12.15%,transparent 12.15% 88%,#ffffff20 88% 88.15%,transparent 88.15%);
+  box-shadow:inset 0 0 0 8px #e8e4f2,inset 0 0 0 10px #7f91b5;
+}
+.entry-orbit{border-color:#fff8;box-shadow:0 0 0 18px #ffffff12,0 0 0 38px #ffffff0b}
+.entry-disc{box-shadow:0 0 0 5px #ffffff55,4px 5px 0 #6d789c88}
+.entry-cassette{box-shadow:inset 0 0 0 4px #ffffff55,4px 5px 0 #6d789c88}
+@media(max-width:600px){.login-screen{background-size:36px 36px,36px 36px,72px 72px,72px 72px,100% 100%}}
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
