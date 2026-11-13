@@ -115,6 +115,46 @@ button,input,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!im
 .y2k-music-art .music-sticker-3 i:after{inset:5px 3px;border-radius:2px;background:linear-gradient(90deg,#76509d,#fff,#76509d)}
 @media(max-width:600px){.entry-disc{left:-34px;top:7%}.entry-cassette{right:-25px;top:12%}.entry-butterfly{right:5%;bottom:8%;font-size:48px}.entry-note{left:7%;top:auto;bottom:11%;font-size:36px}.entry-star-one{left:8%;bottom:8%}.entry-star-two{right:9%;top:7%}.entry-orbit{width:110vw;height:110vw}}
 
+
+/* v16 — clearer flip cards, richer folder identities, and a calmer Y2K banner */
+.mixtape-flip{position:relative;height:270px;min-height:270px;perspective:1100px;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.2,.75,.25,1)}
+.mixtape-flip.flipped{transform:rotateY(180deg)}
+.mixtape-face{box-sizing:border-box;position:absolute;inset:0;width:100%;height:270px;min-height:270px;padding:15px;border:2px solid #fff;border-radius:12px;display:flex;flex-direction:column;justify-content:space-between;gap:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:linear-gradient(145deg,#fffaff 0%,#ead9ff 56%,#d4eaff 100%);box-shadow:inset 0 0 0 1px #b28bd5,0 6px 15px #69428a25}
+.mixtape-front{position:absolute;transform:rotateY(0)}
+.mixtape-back{position:absolute;inset:0;transform:rotateY(180deg);overflow-y:auto;overflow-x:hidden;justify-content:flex-start;background:linear-gradient(145deg,#fffaff,#f8e0f3 48%,#e1d8ff);scrollbar-width:thin;scrollbar-color:#b48bd2 #f8edff}
+.mixtape-back h3{flex:0 0 auto;max-width:100%;font:10px/1.7 Silkscreen,monospace;color:#70449d;margin:0;padding:0 0 10px;border-bottom:1px dashed #b18bd1;overflow-wrap:anywhere;word-break:break-word}
+.mixtape-back p{flex:1 0 auto;min-width:0;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:12px/1.85 'Chakra Petch',sans-serif;margin:0;color:#4d3867;padding:2px 1px 8px}
+.mixtape-back .soft-button{position:sticky;bottom:0;align-self:flex-start;flex:0 0 auto;box-shadow:0 0 0 5px #f8e9f6}
+.song-top{min-width:0;align-items:center;gap:13px}.song-meta{flex:1 1 auto;min-width:0;overflow:hidden}.song-meta h3{font:10px/1.65 Silkscreen,monospace;overflow-wrap:anywhere;word-break:break-word;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.song-meta p{overflow-wrap:anywhere;word-break:break-word}.song-actions{margin-top:auto;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.song-actions button{min-width:0;max-width:100%;white-space:normal;line-height:1.5}.song-card{min-width:0;overflow:hidden;padding:13px;border-radius:15px;background:linear-gradient(145deg,#fffaff,#e7d8ff 45%,#d8efff 78%,#ffe3f4);border:1px solid #fff;box-shadow:inset 0 0 0 2px #c5a5e4,0 9px 22px #3d205b28}
+.song-card:before{content:'SIDE A  /  A LITTLE SOUNDTRACK';font:7px Silkscreen,monospace;letter-spacing:.09em;color:#7950a0;padding:7px 9px;border:1px dashed #b89bd4;border-radius:7px;background:linear-gradient(90deg,#fff,#f7e8ff,#e9f8ff)}
+/* Home banner: soft pearlescent palette, balanced focal point, restrained ornaments */
+.y2k-banner{min-height:245px!important;border:1px solid #fff!important;border-radius:19px!important;background:radial-gradient(ellipse at 50% 46%,#fff9ff 0%,#f8e8ff 17%,#dfc8fb 39%,#b59be3 68%,#8d78c5 100%)!important;box-shadow:inset 0 0 38px #fff9,0 10px 26px #55347725!important;isolation:isolate}
+.y2k-banner:before{width:190px;height:190px;border:1px solid #fff9;box-shadow:0 0 0 13px #ffffff25,0 0 0 28px #ffffff18,0 0 0 44px #ffffff10}
+.y2k-banner:after{width:132px;height:132px;border:1px solid #fff;box-shadow:0 0 0 8px #ffffff2a,0 0 25px #fff9}
+.banner-label{font:700 clamp(16px,2.5vw,22px) Orbitron,sans-serif;letter-spacing:.12em;color:#fff;text-align:center;text-shadow:0 2px 0 #9873c3,0 0 13px #fff;transform:none;z-index:4;line-height:1.65}
+.banner-label small{font:7px Silkscreen,monospace;letter-spacing:.16em;color:#7955a6;text-shadow:0 1px #fff}
+.banner-sticker{filter:drop-shadow(0 4px 5px #5e438044)}
+.sticker-cd{left:12%;top:17%;transform:rotate(-17deg)}.sticker-butterfly{right:13%;top:15%;transform:rotate(9deg)}.sticker-headphones{right:15%;bottom:12%;transform:rotate(9deg)}.sticker-star{left:17%;bottom:14%;font-size:29px;color:#fff4b8;text-shadow:0 0 12px #fff}.sticker-sparkle{right:8%;top:48%;font-size:23px;color:#fff}.sticker-note{left:8%;top:48%;font-size:28px;color:#fff}
+.drawn-cd{width:49px;height:49px}.drawn-butterfly{transform:scale(.9)}
+/* Distinct folder skins so every section feels like its own Y2K window */
+#why .content-body{background:radial-gradient(ellipse at 100% 0%,#f5dfff 0,transparent 35%),linear-gradient(145deg,#fffaff,#f5edff 70%,#fff)}
+#why .letter-window{border:1px solid #fff;background:linear-gradient(145deg,#fff,#fff6fd 55%,#efe2ff);box-shadow:inset 0 0 0 1px #d7b9e9,5px 6px 0 #e5d5f2}
+#why .letter-window:before{content:'PERSONAL MESSAGE  /  SAVED WITH LOVE';display:block;font:7px Silkscreen,monospace;letter-spacing:.08em;color:#a16db8;border-bottom:1px dashed #d7b9e9;padding-bottom:8px;margin-bottom:12px}
+#playlists .content-body{background:radial-gradient(ellipse at 0 0%,#d7f3ff 0,transparent 36%),linear-gradient(145deg,#f9fdff,#edf5ff 60%,#fff4fb)}
+#playlists .media-card{background:linear-gradient(145deg,#fff,#e8f7ff 55%,#f4e6ff);border-color:#fff;box-shadow:inset 0 0 0 1px #a9cce5,0 7px 16px #547a9b20}
+#playlists .media-card:before{content:'PLAYLIST WINDOW  /  NOW STREAMING';display:block;font:7px Silkscreen,monospace;color:#5982a4;letter-spacing:.07em;padding:4px 0 9px}
+#songs .content-body{background:radial-gradient(ellipse at 100% 0%,#f9d8f1 0,transparent 34%),linear-gradient(145deg,#fffaff,#f2eaff 62%,#edf8ff)}
+#hearts .content-body{background:radial-gradient(ellipse at 0 0%,#ffe1f1 0,transparent 36%),linear-gradient(145deg,#fffaff,#f8eafa 60%,#f0eaff)}
+#hearts .jar-visual{border-radius:20px;background:radial-gradient(circle at 50% 30%,#fff,#f5dcff 45%,#c6a8e9 100%);box-shadow:inset 0 0 30px #fff9,0 8px 18px #69428a20}
+#hearts .feeling{background:linear-gradient(145deg,#fff,#fff0f8 55%,#eee5ff);border-color:#fff;box-shadow:inset 0 0 0 1px #d7b6e4,0 4px 9px #70458a12}
+#guestbook .content-body{background:radial-gradient(ellipse at 100% 0%,#d9f2ff 0,transparent 36%),linear-gradient(145deg,#fbffff,#f0f3ff 55%,#fff0fa)}
+#guestbook .guestbook-form{padding:17px;border:1px solid #fff;border-radius:13px;background:linear-gradient(145deg,#fff,#f0f1ff 55%,#fcecff);box-shadow:inset 0 0 0 1px #c7b7e6,0 7px 16px #4c3c7920}
+#guestbook .guestbook-aside{border:1px dashed #a78cc8;border-radius:13px;background:linear-gradient(145deg,#fff8ff,#e9e4ff);padding:17px;box-shadow:inset 0 0 0 4px #ffffff88}
+#admin .content-body{background:radial-gradient(ellipse at 100% 0%,#e5d9ff 0,transparent 36%),linear-gradient(145deg,#fcfaff,#f1eaff 60%,#fff)}
+#admin .custom-panel{border:1px solid #fff;border-radius:12px;padding:16px;background:linear-gradient(145deg,#fff,#f4ecff);box-shadow:inset 0 0 0 1px #d2bce9,0 6px 15px #55347714}
+/* Small-screen safeguards */
+@media(max-width:600px){.mixtape-flip,.mixtape-face{height:290px;min-height:290px}.mixtape-face{padding:12px}.mixtape-back p{font-size:11px;line-height:1.75}.y2k-banner{min-height:205px!important}.sticker-cd{left:7%}.sticker-butterfly{right:7%}.sticker-headphones{right:8%}.sticker-star{left:8%}}
+
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
