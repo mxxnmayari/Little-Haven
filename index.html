@@ -155,6 +155,18 @@ button,input,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!im
 /* Small-screen safeguards */
 @media(max-width:600px){.mixtape-flip,.mixtape-face{height:290px;min-height:290px}.mixtape-face{padding:12px}.mixtape-back p{font-size:11px;line-height:1.75}.y2k-banner{min-height:205px!important}.sticker-cd{left:7%}.sticker-butterfly{right:7%}.sticker-headphones{right:8%}.sticker-star{left:8%}}
 
+
+/* v17: compact Side A layout — remove the large dead gap */
+.mixtape-flip{height:218px;min-height:218px}
+.mixtape-face{height:218px;min-height:218px;padding:12px;gap:8px}
+.mixtape-front{justify-content:flex-start;gap:11px}
+.mixtape-front .song-top{flex:0 0 auto;align-items:center}
+.mixtape-front .song-actions{margin-top:auto;padding-top:7px;border-top:1px dashed #b18bd1}
+.mixtape-front:after{margin-top:0;padding-top:6px;line-height:1.4}
+.mixtape-back{justify-content:flex-start;gap:10px}
+.mixtape-back p{flex:1 1 auto;min-height:0}
+@media(max-width:600px){.mixtape-flip,.mixtape-face{height:230px;min-height:230px}.mixtape-face{padding:11px}.mixtape-back p{font-size:11px;line-height:1.7}}
+
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
