@@ -446,6 +446,35 @@ const CONFIG={recipientUserId:'Tangi',recipientPassword:'honeymoon avenue'};
 const firebaseConfig={apiKey:'AIzaSyDYjL6b2XfYZvEYS_6NOpua7qgptKAXeS4',authDomain:'little-haven-tangi.firebaseapp.com',databaseURL:'https://little-haven-tangi-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'little-haven-tangi',storageBucket:'little-haven-tangi.firebasestorage.app',messagingSenderId:'8275314096',appId:'1:8275314096:web:24f28901515e4a67058275'};
 const ADMIN_UID='m7sesZeBraajVvOWPvGKesr3iiI3';
 
+// Discord notifications are sent through the Cloudflare Worker.
+// The Discord webhook URLs stay private in Cloudflare Secrets.
+const DISCORD_WORKER_URL='https://tangi-little-haven.triciajulesvalencia.workers.dev';
+
+async function sendDiscordNotification(payload){
+ try{
+  const response=await fetch(DISCORD_WORKER_URL,{
+   method:'POST',
+   mode:'cors',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify(payload),
+   keepalive:true
+  });
+  if(!response.ok)console.warn('Discord notification was not accepted:',response.status);
+ }catch(error){
+  console.warn('Discord notification could not be delivered.',error);
+ }
+}
+
+function sendSiteVisitNotification(){
+ try{
+  if(sessionStorage.getItem('tangiLittleHavenVisitSent')==='1')return;
+  sessionStorage.setItem('tangiLittleHavenVisitSent','1');
+ }catch(error){
+  // Continue if session storage is unavailable.
+ }
+ void sendDiscordNotification({type:'visit',page:location.pathname||'/'});
+}
+
 
 const firebaseConfigured=!!firebaseConfig.apiKey && firebaseConfig.apiKey!=='PASTE_FULL_FIREBASE_WEB_API_KEY_HERE';
 const firebaseApp=firebaseConfigured?initializeApp(firebaseConfig):null;
@@ -522,7 +551,7 @@ function renderHeartAdmin(){$('heartNotesAdmin').innerHTML=feelings.map(f=>`<div
 $('unlockAdmin').addEventListener('click',async()=>{if(!firebaseConfigured){$('adminStatus').textContent='Firebase API key is missing or incomplete. Paste the full Web API key from Firebase Project settings.';return;}const email=$('adminEmail').value.trim(),password=$('adminPass').value;if(!email||!password){$('adminStatus').textContent='Enter your owner email and password first.';return;}$('unlockAdmin').disabled=true;$('adminStatus').textContent='Checking your owner account…';try{await setPersistence(auth,inMemoryPersistence);const credential=await signInWithEmailAndPassword(auth,email,password);if(credential.user.uid!==ADMIN_UID){await signOut(auth);throw new Error('This account is not the authorized owner account.');}const cloudLoaded=await loadCloud();renderEverything();renderLetters();$('adminEditor').classList.remove('hidden');$('adminStatus').textContent=cloudLoaded?'OWNER VERIFIED // Haven loaded from Firebase.':'OWNER VERIFIED // Cloud read failed; check Firestore rules before editing.';}catch(err){$('adminStatus').textContent=err.code==='auth/invalid-credential'?'Email or password is incorrect.':err.code==='auth/operation-not-allowed'?'Enable Email/Password under Firebase Authentication → Sign-in method.':(err.message||err.code||'Could not sign in.');}finally{$('unlockAdmin').disabled=false;}});
 
 // Guestbook submissions are written to a separate collection. Discord webhook secrets must live in a server-side function, never in this public page.
-$('guestbookForm').addEventListener('submit',async e=>{e.preventDefault();if(!firebaseConfigured){$('guestbookStatus').textContent='Firebase connection is not ready yet. Please try again after setup.';return;}const item={name:$('guestName').value.trim(),mood:$('guestMood').value,message:$('guestMessage').value.trim(),createdAt:serverTimestamp()};if(!item.name||!item.message)return;$('guestbookStatus').textContent='SENDING LOVE.MSG...';try{await addDoc(collection(db,'guestbook'),item);$('guestbookStatus').textContent='MESSAGE SENT // LOVE RECEIVED';$('guestMessage').value='';}catch(err){console.error(err);$('guestbookStatus').textContent='Could not send yet: '+(err.code||'Firebase connection needs setup');}});
+$('guestbookForm').addEventListener('submit',async e=>{e.preventDefault();if(!firebaseConfigured){$('guestbookStatus').textContent='Firebase connection is not ready yet. Please try again after setup.';return;}const item={name:$('guestName').value.trim(),mood:$('guestMood').value,message:$('guestMessage').value.trim(),createdAt:serverTimestamp()};if(!item.name||!item.message)return;$('guestbookStatus').textContent='SENDING LOVE.MSG...';try{await addDoc(collection(db,'guestbook'),item);$('guestbookStatus').textContent='MESSAGE SENT // LOVE RECEIVED';void sendDiscordNotification({type:'love-note',sender:item.name+' — '+item.mood,message:item.message});$('guestMessage').value='';}catch(err){console.error(err);$('guestbookStatus').textContent='Could not send yet: '+(err.code||'Firebase connection needs setup');}});
 $('ownerSignOut').addEventListener('click',async()=>{await signOut(auth);$('adminPass').value='';$('adminStatus').textContent='You have signed out.';});
 $('saveDescriptions').addEventListener('click',()=>{['Home','Why','Playlists','Songs','Hearts'].forEach(k=>{const v=$('editDesc'+k).value;saveText('desc'+k,v);if($('desc'+k))$('desc'+k).textContent=v;});saveText('homeTitle',$('editHomeTitle').value);saveText('homeKicker',$('editHomeKicker').value);saveText('homeBottom',$('editHomeBottom').value);saveText('homeWindowTitle',$('editHomeWindowTitle').value);saveText('homeSubline',$('editHomeSubline').value);saveText('homeBottomLabel',$('editHomeBottomLabel').value);$('homeWindowTitle').textContent=$('editHomeWindowTitle').value;$('homeSubline').textContent=$('editHomeSubline').value;$('homeBottomLabel').textContent=$('editHomeBottomLabel').value;['1','2','3'].forEach(n=>{const v=$('editShortcut'+n).value;saveText('homeShortcut'+n,v);$('shortcut'+n).childNodes[0].textContent=v;});$('homeTitle').textContent=$('editHomeTitle').value;$('homeKicker').textContent=$('editHomeKicker').value;$('homeBottomText').textContent=$('editHomeBottom').value;$('adminStatus').textContent='Descriptions updated. Syncing to Firebase…';});
 $('saveWhy').addEventListener('click',()=>{const recipient=$('newLetterRecipient').value.trim(),body=$('editWhy').value,signature=$('newLetterSignature').value.trim();if(!recipient&&!body.trim()&&!signature){$('adminStatus').textContent='Add a recipient, message, or signature first.';return;}const item={recipient,body,signature};if(editingLetterIndex>=0){letters[editingLetterIndex]=item;editingLetterIndex=-1;$('saveWhy').textContent='ADD LETTER';}else letters.push(item);persist();renderLetters();$('newLetterRecipient').value=$('editWhy').value=$('newLetterSignature').value='';$('adminStatus').textContent='Letter added locally. Confirming online save…';});
@@ -531,6 +560,8 @@ $('addPlaylist').addEventListener('click',()=>{const title=$('newPlaylistTitle')
 $('addHeartMessage').addEventListener('click',()=>{const f=feelings.find(x=>x.id===$('heartCategory').value),message=$('newHeartMessage').value;if(!f||!message.trim())return;f.messages.push(message);persist();renderFeelings();$('newHeartMessage').value='';$('adminStatus').textContent='Heart note added locally. Confirming online save…';});
 function renderEverything(){renderLetters();renderFeelings();renderSongs();renderPlaylists();renderDescriptions();}
 await authReady;if(firebaseConfigured)await loadCloud();renderEverything();
+// One site-visit alert per browser tab session; refreshes do not duplicate it.
+sendSiteVisitNotification();
 $('minimizePlayer').addEventListener('click',()=>{$('playerDock').classList.toggle('minimized');$('playerBody').classList.toggle('hidden');});$('hidePlayer').addEventListener('click',()=>$('playerDock').classList.add('hidden'));
 $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date()).toUpperCase();
 </script></body></html>
