@@ -459,20 +459,19 @@ async function sendDiscordNotification(payload){
    body:JSON.stringify(payload),
    keepalive:true
   });
-  if(!response.ok)console.warn('Discord notification was not accepted:',response.status);
+  if(!response.ok){console.warn('Discord notification was not accepted:',response.status);return false;}
+  return true;
  }catch(error){
   console.warn('Discord notification could not be delivered.',error);
+  return false;
  }
 }
 
-function sendSiteVisitNotification(){
- try{
-  if(sessionStorage.getItem('tangiLittleHavenVisitSent')==='1')return;
-  sessionStorage.setItem('tangiLittleHavenVisitSent','1');
- }catch(error){
-  // Continue if session storage is unavailable.
- }
- void sendDiscordNotification({type:'visit',page:location.pathname||'/'});
+async function sendSiteVisitNotification(){
+ const visitKey='tangiLittleHavenVisitSent_v2';
+ try{if(sessionStorage.getItem(visitKey)==='1')return;}catch(error){}
+ const sent=await sendDiscordNotification({type:'visit',page:location.pathname||'/'});
+ if(sent){try{sessionStorage.setItem(visitKey,'1');}catch(error){}}
 }
 
 
