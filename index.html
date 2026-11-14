@@ -1010,3 +1010,182 @@ $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:
   .jar { transform: scale(.9); transform-origin: center top; margin-bottom: -18px; }
 }
 </style>
+
+<style id="jar-y2k-desktop-final">
+
+/* JAR_OF_HEARTS.EXE — retro Y2K desktop widget treatment */
+#hearts .jar-area {
+  align-items: start;
+  gap: 22px;
+}
+#hearts .jar-visual {
+  position: relative;
+  min-height: 350px !important;
+  padding: 42px 18px 38px !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid #fff !important;
+  border-radius: 5px !important;
+  background:
+    linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.10) 1px, transparent 1px),
+    linear-gradient(145deg,#d9eaff 0%,#b6c9f1 38%,#d9baf0 100%) !important;
+  background-size: 12px 12px,12px 12px,auto !important;
+  box-shadow:
+    inset 3px 3px 0 #fff,
+    inset -4px -4px 0 #899acb,
+    5px 6px 0 #39234f !important;
+}
+#hearts .jar-visual::before {
+  content: "HEART_JAR.EXE  •  INVENTORY: 030";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  padding: 7px 8px;
+  color: #fff;
+  background: linear-gradient(90deg,#49306c,#8062a8 60%,#a7b9e7);
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0 #66517f;
+  font: 8px Silkscreen,monospace;
+  letter-spacing: .08em;
+  text-align: left;
+}
+#hearts .jar {
+  position: relative;
+  isolation: isolate;
+  display: block !important;
+  width: 220px !important;
+  height: 240px !important;
+  flex: 0 0 auto;
+  margin: 24px 0 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 6px solid #512345 !important;
+  border-top: 0 !important;
+  border-radius: 7px 7px 18px 18px !important;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.70),rgba(255,255,255,.08) 22%,rgba(222,238,255,.22) 70%,rgba(255,255,255,.60)),
+    linear-gradient(#f8e8ffb8,#b6c8f0a8) !important;
+  box-shadow:
+    inset 5px 0 0 rgba(255,255,255,.68),
+    inset -5px 0 0 rgba(75,44,102,.22),
+    5px 6px 0 #39213f !important;
+  cursor: pointer;
+}
+#hearts .jar::before {
+  content: "";
+  position: absolute;
+  z-index: 40;
+  left: -10px;
+  right: -10px;
+  top: -19px;
+  height: 23px;
+  border: 5px solid #512345;
+  border-radius: 4px;
+  background: linear-gradient(180deg,#fff 0%,#dbe8ff 35%,#8ca8d7 100%);
+  box-shadow: inset 0 3px 0 #fff, 3px 4px 0 #39213f;
+}
+#hearts .jar::after {
+  content: "";
+  position: absolute;
+  z-index: 35;
+  left: 10px;
+  top: 12px;
+  bottom: 12px;
+  width: 8px;
+  background: rgba(255,255,255,.48);
+  box-shadow: 5px 0 rgba(255,255,255,.16);
+  pointer-events: none;
+}
+#hearts .jar-heart {
+  position: absolute !important;
+  display: block !important;
+  width: 42px;
+  height: 38px;
+  margin: 0 !important;
+  padding: 0;
+  color: transparent !important;
+  background: linear-gradient(145deg,#ff9fcb 0%,var(--heart-color) 48%,#e53d7d 100%);
+  border: 2px solid #8d2858;
+  clip-path: polygon(
+    0 24%, 12% 24%, 12% 8%, 38% 8%, 38% 0,
+    62% 0, 62% 8%, 88% 8%, 88% 24%, 100% 24%,
+    100% 58%, 88% 58%, 88% 74%, 75% 74%,
+    75% 88%, 62% 88%, 62% 100%, 38% 100%,
+    38% 88%, 25% 88%, 25% 74%, 12% 74%,
+    12% 58%, 0 58%
+  );
+  filter: drop-shadow(2px 3px 0 #702448);
+  text-shadow: none !important;
+  animation: none !important;
+  transform: none !important;
+  z-index: 2;
+}
+#hearts .jar-heart::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  width: 8px;
+  height: 6px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 8px 0 rgba(255,255,255,.5);
+}
+/* Five tightly packed rows; slight overlap makes the hearts look stacked, not floating. */
+#hearts .jar-heart:nth-child(5n+1) { left: 7px; }
+#hearts .jar-heart:nth-child(5n+2) { left: 43px; }
+#hearts .jar-heart:nth-child(5n+3) { left: 79px; }
+#hearts .jar-heart:nth-child(5n+4) { left: 115px; }
+#hearts .jar-heart:nth-child(5n)   { left: 151px; }
+#hearts .jar-heart:nth-child(-n+5) { top: 23px; }
+#hearts .jar-heart:nth-child(n+6):nth-child(-n+10) { top: 58px; }
+#hearts .jar-heart:nth-child(n+11):nth-child(-n+15) { top: 93px; }
+#hearts .jar-heart:nth-child(n+16):nth-child(-n+20) { top: 128px; }
+#hearts .jar-heart:nth-child(n+21):nth-child(-n+25) { top: 163px; }
+#hearts .jar-heart:nth-child(n+26) { top: 190px; }
+#hearts .jar-heart:nth-child(3n) {
+  background: linear-gradient(145deg,#ffe49a 0%,#ffbd45 50%,#df7b27 100%);
+}
+#hearts .jar-heart:nth-child(3n+1) {
+  background: linear-gradient(145deg,#ffb8dc 0%,#ff6f9f 50%,#cf376e 100%);
+}
+#hearts .jar-heart:nth-child(3n+2) {
+  background: linear-gradient(145deg,#e3c5ff 0%,#aa75ed 50%,#7547bd 100%);
+}
+#hearts .jar-hint {
+  position: static !important;
+  margin-top: 13px;
+  padding: 7px 10px;
+  color: #fff !important;
+  background: linear-gradient(90deg,#49306c,#8062a8);
+  border: 2px solid #fff;
+  box-shadow: 2px 2px 0 #66517f;
+  font: 8px Silkscreen,monospace !important;
+  letter-spacing: .06em;
+}
+#hearts .feeling {
+  border: 2px solid #fff !important;
+  border-radius: 4px !important;
+  background: linear-gradient(180deg,#fff 0%,#e7edff 40%,#c6d2f0 100%) !important;
+  box-shadow: inset 2px 2px 0 #fff, 3px 3px 0 #7e6a9d !important;
+  color: #46315e !important;
+  font: 8px Silkscreen,monospace !important;
+  text-transform: uppercase;
+}
+#hearts .feeling .heart-dot { filter: drop-shadow(1px 1px #fff); }
+#hearts .pop-message {
+  border: 2px solid #fff !important;
+  border-radius: 4px !important;
+  background: linear-gradient(145deg,#f8f5ff,#d9dff6) !important;
+  box-shadow: inset 2px 2px 0 #fff, 4px 4px 0 #6a5587 !important;
+}
+@media (max-width: 720px) {
+  #hearts .jar-visual { min-height: 340px !important; }
+  #hearts .jar { transform: scale(.92); transform-origin: center center; }
+}
+
+</style>
