@@ -872,207 +872,123 @@ await authReady;if(firebaseConfigured)await loadCloud();renderEverything();void 
 $('minimizePlayer').addEventListener('click',()=>{$('playerDock').classList.toggle('minimized');$('playerBody').classList.toggle('hidden');});$('hidePlayer').addEventListener('click',()=>$('playerDock').classList.add('hidden'));
 $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date()).toUpperCase();
 
-/* Independent Y2K windows: each content item is a sibling, never nested in a second card. */
+/* REAL SIBLING WINDOWS — do not wrap an already-designed card in another card. */
 (function(){
-  const labels = {
-    why: 'OPEN_LOVE.EXE',
-    playlists: 'SPOTIFY.MP3',
-    songs: 'HEARTBEAT.MP3',
-    hearts: 'READ_ME.SYS'
-  };
-
-  function titlebar(label){
-    const bar=document.createElement('div');
-    bar.className='titlebar';
-    const name=document.createElement('span');
-    name.textContent=label;
-    const controls=document.createElement('div');
-    controls.className='win-controls';
-    controls.innerHTML='<span>_</span><span>□</span><span>×</span>';
-    bar.append(name,controls);
-    return bar;
-  }
-
-  function makeWindowFromContent(content,label){
+  const makeWindow=(node,label)=>{
     const win=document.createElement('div');
     win.className='chrome independent-window';
-    win.append(titlebar(label));
-    const body=document.createElement('div');
-    body.className='content-body independent-body';
-    body.append(content);
-    win.append(body);
-    return win;
-  }
+    const bar=document.createElement('div');bar.className='titlebar';
+    const name=document.createElement('span');name.textContent=label;
+    const controls=document.createElement('div');controls.className='win-controls';
+    controls.innerHTML='<span>_</span><span>□</span><span>×</span>';
+    bar.append(name,controls);
+    const body=document.createElement('div');body.className='content-body independent-body';
+    body.append(node);win.append(bar,body);return win;
+  };
 
-  function splitPage(id){
+  function splitPage(id,label){
     const page=document.getElementById(id);
     const outer=page?.querySelector(':scope > .content-window');
-    if(!outer || page.dataset.windowsReady==='yes') return;
+    if(!outer||outer.dataset.splitWindows==='done')return;
     const oldBar=outer.querySelector(':scope > .titlebar');
     const body=outer.querySelector(':scope > .content-body');
-    if(!oldBar || !body) return;
+    if(!oldBar||!body)return;
 
+    // The heading is one window. Keep the actual list host as a sibling.
     const heading=document.createElement('div');
     heading.className='chrome content-window section-intro-window';
     heading.append(oldBar);
-    const headingBody=document.createElement('div');
-    headingBody.className='content-body';
-    for(let i=0;i<3 && body.firstElementChild;i++){
+    const headingBody=document.createElement('div');headingBody.className='content-body';
+    while(body.firstElementChild && headingBody.children.length<3){
       headingBody.append(body.firstElementChild);
     }
     heading.append(headingBody);
+    const siblings=[heading];
 
-    const fragment=document.createDocumentFragment();
-    fragment.append(heading);
-
-    if(id==='hearts'){
-      const jarArea=body.querySelector('.jar-area');
-      if(jarArea){
-        const jarVisual=jarArea.querySelector('.jar-visual');
-        const feelings=jarArea.querySelector('#feelingGrid')?.parentElement;
-        if(jarVisual) fragment.append(makeWindowFromContent(jarVisual,'HEART JAR // PICK ONE'));
-        if(feelings) {
-          const categoryHeading=feelings.querySelector('.pixel');
-          const grid=feelings.querySelector('#feelingGrid');
-          const categoryContent=document.createElement('div');
-          categoryContent.className='heart-category-content';
-          if(categoryHeading) categoryContent.append(categoryHeading);
-          if(grid) categoryContent.append(grid);
-          fragment.append(makeWindowFromContent(categoryContent,'FEELING SELECTOR.SYS'));
-        }
-        jarArea.remove();
+    [...body.children].forEach(node=>{
+      if(['letterList','playlistList','songList'].includes(node.id)){
+        // The children rendered here already ARE the individual windows.
+        siblings.push(node);
+      } else if(id==='hearts' && node.classList.contains('jar-area')){
+        const jar=node.querySelector('.jar-visual');
+        const categories=node.children[1];
+        if(jar) siblings.push(makeWindow(jar,'HEART JAR // PICK A NOTE'));
+        if(categories) siblings.push(makeWindow(categories,'CHOOSE A FEELING.SYS'));
+      } else if(node.id==='songLetter'){
+        siblings.push(makeWindow(node,'HEARTBEAT // YOUR NOTE'));
+      } else if(id==='guestbook' && node.classList.contains('guestbook-layout')){
+        siblings.push(makeWindow(node,'SEND LOVE // MESSAGE.EXE'));
+      } else {
+        siblings.push(makeWindow(node,label));
       }
-      [...body.children].forEach(node=>fragment.append(makeWindowFromContent(node,'READ_ME.SYS // NOTE')));
-    } else {
-      [...body.children].forEach(node=>{
-        // These containers hold cards that already have their own designed window chrome.
-        // Keep them as transparent layout hosts; never wrap their cards in another window.
-        if(['letterList','playlistList','songList'].includes(node.id)){
-          node.classList.add('independent-list');
-          fragment.append(node);
-        } else if(node.id==='songLetter'){
-          fragment.append(makeWindowFromContent(node,'HEARTBEAT // YOUR NOTE'));
-        } else {
-          fragment.append(makeWindowFromContent(node,labels[id]+' // NOTE'));
-        }
-      });
-    }
-
-    outer.replaceWith(fragment);
-    page.dataset.windowsReady='yes';
+    });
+    outer.replaceWith(...siblings);
+    page.dataset.splitWindows='done';
   }
 
-  function decorateDynamicCards(){
-    // Letter notifications, Spotify playlist cards, and song cards already contain
-    // their own titlebars/design. They stay individual siblings inside a transparent host.
+  function prepareLists(){
+    // Never create a wrapper around .letter-notification, .playlist-window or .song-card.
     ['letterList','playlistList','songList'].forEach(id=>{
       const list=document.getElementById(id);
       if(list) list.classList.add('independent-list');
     });
   }
-
-  function refresh(){
-    Object.keys(labels).forEach(splitPage);
-    decorateDynamicCards();
+  function run(){
+    splitPage('why','OPEN_LOVE.EXE');
+    splitPage('playlists','SPOTIFY.MP3');
+    splitPage('songs','HEARTBEAT.MP3');
+    splitPage('hearts','READ_ME.SYS');
+    splitPage('guestbook','SEND_LOVE.MSG');
+    prepareLists();
   }
-
-  document.addEventListener('DOMContentLoaded',refresh);
-  if(document.readyState!=='loading') refresh();
-
-  // Re-rendered feeling buttons remain individual category tiles, not nested window cards.
-  const watchFeelings=()=>{
-    const grid=document.getElementById('feelingGrid');
-    if(!grid || grid.dataset.windowObserver==='yes') return;
-    grid.dataset.windowObserver='yes';
-    const observer=new MutationObserver(()=>{
-      grid.querySelectorAll('.feeling').forEach((item,index)=>{
-        item.classList.add('independent-feeling');
-        item.dataset.categoryWindow=String(index+1).padStart(2,'0');
-      });
-    });
-    observer.observe(grid,{childList:true});
-    grid.querySelectorAll('.feeling').forEach((item,index)=>{
-      item.classList.add('independent-feeling');
-      item.dataset.categoryWindow=String(index+1).padStart(2,'0');
-    });
-  };
-  document.addEventListener('DOMContentLoaded',watchFeelings);
-  if(document.readyState!=='loading') watchFeelings();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});
+  else run();
+  const mo=new MutationObserver(prepareLists);
+  ['letterList','playlistList','songList'].forEach(id=>{
+    const node=document.getElementById(id);
+    if(node)mo.observe(node,{childList:true});
+  });
 })();
 </script></body></html>
 
-<style id="independent-window-layout-fix">
-/* Hosts are layout-only: no visible outer card around the individual windows. */
-#why .independent-list,
-#playlists .independent-list,
-#songs .independent-list {
-  display: contents !important;
+<style id="actual-window-and-spotify-fit-fix">
+/* Page is a window desktop: section heading and every content window are siblings. */
+#why.page,#playlists.page,#songs.page,#hearts.page,#guestbook.page{
+  display:flex;flex-direction:column;align-items:center;gap:18px;
 }
-#why, #playlists, #songs, #hearts {
-  align-content: start;
+#why.page.hidden,#playlists.page.hidden,#songs.page.hidden,#hearts.page.hidden,#guestbook.page.hidden{display:none!important}
+#why>.section-intro-window,#playlists>.section-intro-window,#songs>.section-intro-window,#hearts>.section-intro-window,#guestbook>.section-intro-window,
+#why>.independent-window,#playlists>.independent-window,#songs>.independent-window,#hearts>.independent-window,#guestbook>.independent-window{
+  width:min(100%,900px);max-width:900px;margin:0 auto;box-sizing:border-box;
 }
-#why > .section-intro-window,
-#playlists > .section-intro-window,
-#songs > .section-intro-window,
-#hearts > .section-intro-window,
-#hearts > .independent-window {
-  width: min(100%, 980px);
-  margin: 0 auto 18px;
+/* List containers are transparent layout hosts, not a visible parent box. */
+#why>#letterList,#playlists>#playlistList,#songs>#songList{
+  display:grid!important;width:min(100%,900px);max-width:900px;margin:0 auto;
+  grid-template-columns:minmax(0,1fr)!important;gap:18px!important;
+  padding:0!important;border:0!important;background:transparent!important;
+  box-shadow:none!important;overflow:visible!important;
 }
-#why > .letter-list,
-#playlists > .playlist-grid,
-#songs > .song-grid {
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
+#why .letter-notification,#playlists .playlist-window,#songs .song-card{
+  width:100%!important;max-width:900px!important;min-width:0!important;
+  margin:0!important;box-sizing:border-box;
 }
-#why .letter-notification,
-#playlists .playlist-window,
-#songs .song-card {
-  min-width: 0;
-  width: 100%;
-  align-self: start;
+/* Spotify iframe stays fully inside its own playlist window. */
+#playlists .playlist-window{overflow:hidden!important;min-width:0!important;}
+#playlists .playlist-window-inner{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden!important;}
+#playlists .spotify-frame{
+  display:block!important;width:100%!important;max-width:100%!important;
+  min-width:0!important;height:352px!important;min-height:352px!important;
+  margin:0!important;box-sizing:border-box!important;border:0!important;
+  border-radius:4px!important;overflow:hidden!important;
 }
-#hearts .independent-window .jar-visual {
-  min-height: 245px;
+#playlists .playlist-window-top,#playlists .playlist-screen-label,#playlists .playlist-footer{
+  width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;
 }
-#hearts .heart-category-content {
-  width: 100%;
-}
-#hearts .feeling-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(min(100%,190px),1fr));
-  gap: 12px;
-}
-#hearts .independent-feeling {
-  position: relative;
-  min-height: 58px;
-  padding: 12px 12px 10px;
-  border: 1px solid #fff;
-  border-radius: 7px;
-  background: linear-gradient(145deg,#fffaff,#ded0ef);
-  box-shadow: inset 1px 1px #fff, inset -2px -2px #b8a4d0, 2px 3px 0 #78658d55;
-}
-#hearts .independent-feeling::before {
-  content: "FEELING // " attr(data-category-window);
-  display: block;
-  width: 100%;
-  margin: -4px 0 7px;
-  padding: 4px 6px;
-  border: 1px solid #fff;
-  background: linear-gradient(90deg,#5e398d,#9560b8);
-  color: #fff;
-  font: 7px Silkscreen,monospace;
-  letter-spacing: .04em;
-}
-@media(max-width:720px){
-  #why .letter-list,
-  #playlists .playlist-grid,
-  #songs .song-grid {
-    grid-template-columns: minmax(0,1fr) !important;
-    padding: 0 2px;
-  }
-  #hearts .jar-area { grid-template-columns: minmax(0,1fr); }
-  #hearts .independent-window { width: 100%; }
+#hearts>.independent-window .jar-visual{display:flex;justify-content:center;align-items:center}
+#hearts .feeling-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(145px,1fr))!important;gap:10px!important}
+#hearts .feeling{min-width:0!important;width:100%!important;box-sizing:border-box!important}
+@media(max-width:650px){
+ #why>#letterList,#playlists>#playlistList,#songs>#songList{width:100%;padding:0 2px!important}
+ #playlists .spotify-frame{height:352px!important;min-height:352px!important}
 }
 </style>
