@@ -1052,3 +1052,31 @@ $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:
 }
 
 </style>
+
+
+<style id="spotify-y2k-tight-fit-final">
+/* Compact retro media-player window: remove the dead margins around the real Spotify player. */
+#playlists .playlist-grid{display:flex!important;flex-direction:column!important;gap:18px!important;width:100%!important;min-width:0!important;margin:16px 0 0!important}
+#playlists .playlist-window{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important;border:3px solid #fdfcff!important;border-radius:5px!important;background:#dfe6f2!important;box-shadow:inset 2px 2px 0 #fff, inset -2px -2px 0 #a2aec9,4px 5px 0 #49315e!important}
+#playlists .playlist-windowbar{min-height:34px!important;padding:6px 9px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;background:linear-gradient(90deg,#344d82 0%,#6388c1 54%,#a6c1e4 100%)!important;border-bottom:2px solid #fff!important;color:#fff!important;font:8px Silkscreen,monospace!important;letter-spacing:.08em!important;text-shadow:1px 1px #33446c!important}
+#playlists .playlist-window-controls{font:bold 13px Arial,sans-serif!important;color:#263c67!important;text-shadow:1px 1px #fff!important;white-space:nowrap!important}
+#playlists .playlist-window-inner{display:block!important;width:100%!important;min-width:0!important;padding:8px!important;margin:0!important;box-sizing:border-box!important;background:linear-gradient(145deg,#eef2fa 0%,#d8ddeb 58%,#c9d9e7 100%)!important}
+#playlists .playlist-window-top{display:flex!important;align-items:center!important;gap:10px!important;width:100%!important;min-width:0!important;min-height:58px!important;margin:0 0 7px!important;padding:7px 9px!important;box-sizing:border-box!important;border:2px solid #fff!important;border-radius:3px!important;background:linear-gradient(100deg,#fff 0%,#e8eafb 45%,#d8eee9 100%)!important;box-shadow:inset 1px 1px #fff,2px 3px 0 #9caac4!important}
+#playlists .playlist-mini-icon{width:43px!important;height:43px!important;flex:0 0 43px!important;object-fit:cover!important;image-rendering:pixelated!important;border:2px solid #fff!important;box-shadow:2px 2px 0 #7184a8!important}
+#playlists .playlist-title-wrap{min-width:0!important;overflow-wrap:anywhere!important}
+#playlists .playlist-kicker{display:block!important;color:#6a7899!important;font:7px Silkscreen,monospace!important;letter-spacing:.08em!important}
+#playlists .playlist-title-wrap h3{margin:3px 0 0!important;color:#3c315a!important;font:700 clamp(13px,2vw,18px) Arial,sans-serif!important;line-height:1.2!important}
+#playlists .playlist-screen-label{display:flex!important;justify-content:space-between!important;gap:6px!important;flex-wrap:wrap!important;margin:0!important;padding:5px 8px!important;border:2px solid #fff!important;border-bottom:0!important;background:linear-gradient(90deg,#b9cbe6,#e4d9ef,#c8e5dc)!important;color:#425b84!important;font:7px Silkscreen,monospace!important;line-height:1.4!important;letter-spacing:.05em!important}
+/* Spotify's native playlist embed is 352px high; make its viewport the full remaining screen width with no inset gap. */
+#playlists .spotify-frame{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;height:352px!important;min-height:352px!important;max-height:352px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-sizing:border-box!important;background:#121212!important;overflow:hidden!important}
+#playlists .playlist-footer{display:flex!important;justify-content:space-between!important;gap:8px!important;margin:0!important;padding:6px 8px!important;border:2px solid #fff!important;border-top:0!important;background:linear-gradient(90deg,#d7e3f2,#e8dff0,#d7eee4)!important;color:#53668a!important;font:7px Silkscreen,monospace!important;letter-spacing:.06em!important}
+#playlists .playlist-window-1 .playlist-windowbar{background:linear-gradient(90deg,#386b67,#6da59b,#b5d6c6)!important}
+#playlists .playlist-window-1 .playlist-screen-label,#playlists .playlist-window-1 .playlist-footer{background:linear-gradient(90deg,#d5eee5,#dce8f5)!important}
+#playlists .playlist-window-2 .playlist-windowbar{background:linear-gradient(90deg,#795078,#b47ea6,#d8b2c9)!important}
+#playlists .playlist-window-2 .playlist-screen-label,#playlists .playlist-window-2 .playlist-footer{background:linear-gradient(90deg,#f4e0ec,#e9e0f5)!important}
+#playlists .playlist-window-3 .playlist-windowbar{background:linear-gradient(90deg,#536d94,#819bbb,#b4c8df)!important}
+#playlists .playlist-window-3 .playlist-screen-label,#playlists .playlist-window-3 .playlist-footer{background:linear-gradient(90deg,#e1eafa,#e0edf0)!important}
+#playlists .playlist-window-4 .playlist-windowbar{background:linear-gradient(90deg,#916b50,#c29b7c,#e5cdb0)!important}
+#playlists .playlist-window-4 .playlist-screen-label,#playlists .playlist-window-4 .playlist-footer{background:linear-gradient(90deg,#f4e8dc,#f0e4ef)!important}
+@media(max-width:600px){#playlists .content-body{padding:10px!important}#playlists .playlist-grid{gap:15px!important}#playlists .playlist-window-inner{padding:6px!important}#playlists .playlist-window-top{min-height:52px!important;padding:6px!important;margin-bottom:5px!important}#playlists .playlist-mini-icon{width:38px!important;height:38px!important;flex-basis:38px!important}#playlists .spotify-frame{height:352px!important;min-height:352px!important}}
+</style>
