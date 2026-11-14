@@ -653,6 +653,78 @@ body{background-color:#30204c;background-image:linear-gradient(90deg,#ffffff08 1
 #playlists .playlist-grid,#songs .song-grid{display:grid;grid-template-columns:1fr;gap:0}
 @media(max-width:720px){.section-intro-window .content-body{padding:19px 17px 22px}.independent-window>.titlebar,.section-intro-window>.titlebar{min-height:48px;padding:10px 12px;font-size:8px}.independent-body{padding:13px}.independent-list{gap:17px}}
 
+
+/* Independent-window layout — no visible section-sized parent cards */
+.section-window,.independent-window,.home-bottom-window,.guestbook-independent-window{
+ border:2px solid #fff;border-radius:7px;
+ background:linear-gradient(135deg,#f8f7ff 0%,#e8e4f2 52%,#d5cce2 100%);
+ box-shadow:inset 1px 1px 0 #fff,inset -2px -2px 0 #b7a9ca,0 7px 0 rgba(20,9,38,.22),0 12px 24px rgba(15,5,30,.18);
+ overflow:hidden;min-width:0;
+}
+.section-window{margin:0 0 22px}
+.section-window .titlebar,.independent-window > .titlebar,.home-bottom-window > .titlebar,.guestbook-independent-window > .titlebar{
+ min-height:42px;padding:9px 12px;background:linear-gradient(90deg,#31518f,#648bc5 52%,#a9c4e7);
+ border-bottom:2px solid #fff;color:#fff;font:9px Silkscreen,monospace;letter-spacing:.07em;text-shadow:1px 1px #263e70;
+}
+.section-window-body{padding:clamp(18px,4vw,34px);color:#594c68;line-height:1.8}
+.section-window-body .kicker{font:9px Silkscreen,monospace;letter-spacing:.08em;color:#82669b}
+.section-window-body .section-heading{font:700 clamp(19px,3.4vw,28px) Orbitron,sans-serif;color:#463768;margin:10px 0}
+.section-window-body .section-intro{font-size:13px;line-height:1.8;margin:0;max-width:78ch}
+.independent-list{display:contents!important}
+.independent-window{display:block;width:100%;margin:0 0 18px}
+.independent-window-body{padding:clamp(12px,2.5vw,20px);min-width:0}
+.playlist-independent-window{background:linear-gradient(145deg,#e5f4fb,#f0e5f7 52%,#dce8fa)}
+.playlist-independent-window:nth-of-type(4n+1){background:linear-gradient(145deg,#e8f4fb,#dce9f8 55%,#e8dcf4)}
+.playlist-independent-window:nth-of-type(4n+2){background:linear-gradient(145deg,#f7e9f5,#e9e1f7 55%,#dff4ee)}
+.playlist-independent-window:nth-of-type(4n+3){background:linear-gradient(145deg,#f9e8ef,#f5e5d9 55%,#e6e0f7)}
+.playlist-independent-window:nth-of-type(4n){background:linear-gradient(145deg,#e4f5ed,#e4eafa 55%,#f6e3ee)}
+.playlist-independent-window .playlist-windowbar{background:linear-gradient(90deg,#567da9,#9a9bc5);color:#fff;border-radius:0}
+.playlist-independent-window .playlist-window-inner{min-width:0}
+.spotify-frame{display:block;width:100%;height:352px;max-height:420px;border:0;border-radius:8px;background:#17212d}
+.song-independent-window{background:linear-gradient(145deg,#f6eaff,#e5e4fa 55%,#d8edf6)}
+.song-independent-window .mixtape-flip{height:270px;min-height:270px}
+.letter-independent-window{background:linear-gradient(145deg,#fffaf3,#f5e9f8 55%,#e8e4f5)}
+.letter-independent-window .letter-notice-view,.letter-independent-window .letter-open-view{border:0;border-radius:0;box-shadow:none}
+.letter-independent-window .notice-windowbar{background:linear-gradient(90deg,#526fa5,#9aabd0);color:white}
+.letter-independent-window .notice-actions{padding:0 16px 16px}
+.jar-independent-window .independent-window-body{padding:0}
+.jar-independent-window .jar-visual{border:0;border-radius:0;min-height:260px}
+.feeling-window-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.feeling-independent-window{margin:0;min-width:0;background:linear-gradient(145deg,#f8f5ff,#e5dff0)}
+.feeling-independent-window .independent-window-body{padding:10px}
+.feeling-independent-window .feeling{width:100%;min-height:52px;border-radius:4px}
+.home-bottom-window{margin-top:20px;color:#554768;background:linear-gradient(135deg,#f8f6ff,#e5deef)}
+.home-bottom-window .home-bottom{margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;padding:18px 20px}
+.home-bottom-window .home-bottom-window-body{padding:0}
+.guestbook-independent-window{margin:0;min-width:0}
+.guestbook-independent-window .guestbook-form,.guestbook-independent-window .guestbook-aside{border:0;border-radius:0;box-shadow:none;margin:0}
+#why,#playlists,#songs,#hearts,#guestbook{display:block;min-width:0}
+#why>.section-window,#playlists>.section-window,#songs>.section-window,#hearts>.section-window,#guestbook>.section-window{margin-bottom:20px}
+#songList .media-card,#playlistList .media-card,#letterList .letter-notification{width:100%;min-width:0}
+#playlistList .playlist-window-inner{padding:14px;min-width:0}
+#playlistList .playlist-window-top{min-width:0}
+#playlistList .playlist-title-wrap{min-width:0;overflow-wrap:anywhere}
+#playlistList iframe{width:100%!important;max-width:100%!important}
+#songList .song-card{margin:0}
+#songList .mixtape-flip{width:100%}
+#letterList .letter-notification{margin:0}
+@media(max-width:720px){
+ .section-window{margin-bottom:16px}
+ .section-window-body{padding:17px}
+ .independent-window{margin-bottom:14px}
+ .spotify-frame{height:352px;max-height:390px}
+ .feeling-window-list{grid-template-columns:1fr;gap:11px}
+ .song-independent-window .mixtape-flip{height:270px;min-height:270px}
+ .independent-window-body{padding:12px}
+ .home-bottom-window .home-bottom{padding:15px}
+}
+
+
+.home-bottom.home-bottom-window{margin-top:20px;padding:0;border:2px solid #fff;border-radius:7px;background:linear-gradient(135deg,#f8f7ff,#e4dced);color:#554768;box-shadow:inset 1px 1px 0 #fff,inset -2px -2px 0 #b7a9ca,0 7px 0 rgba(20,9,38,.22),0 12px 24px rgba(15,5,30,.18)}
+.home-bottom.home-bottom-window .pixel{color:#82669b}
+.home-bottom.home-bottom-window p{color:#554768}
+.home-bottom.home-bottom-window .home-shortcuts button{color:#314b7b;background:linear-gradient(#fff,#d9e5f7);border:1px solid #fff;box-shadow:0 3px #8ba1c5}
+
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
@@ -872,54 +944,115 @@ await authReady;if(firebaseConfigured)await loadCloud();renderEverything();void 
 $('minimizePlayer').addEventListener('click',()=>{$('playerDock').classList.toggle('minimized');$('playerBody').classList.toggle('hidden');});$('hidePlayer').addEventListener('click',()=>$('playerDock').classList.add('hidden'));
 $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date()).toUpperCase();
 
-/* Independent desktop windows across every public folder */
+
+/* Independent desktop windows: section header + one sibling window per item. */
 (function(){
- const makeWindow=(node,label)=>{
-   if(node.classList && node.classList.contains('independent-window')) return node;
-   const win=document.createElement('div');win.className='chrome independent-window';
-   const bar=document.createElement('div');bar.className='titlebar';
-   const name=document.createElement('span');name.textContent=label||'LITTLE_HAVEN.EXE';
-   const controls=document.createElement('div');controls.className='win-controls';controls.innerHTML='<span>_</span><span>□</span><span>×</span>';
-   bar.append(name,controls);const body=document.createElement('div');body.className='content-body independent-body';
-   win.append(bar,body);body.append(node);return win;
+ const pageSpecs = {
+  why:{title:'OPEN_LOVE.EXE', list:'letterList', itemTitle:'MESSAGE_CENTER.EXE'},
+  playlists:{title:'SPOTIFY.MP3', list:'playlistList', itemTitle:'SPOTIFY COLLECTION'},
+  songs:{title:'HEARTBEAT.MP3', list:'songList', itemTitle:'HEARTBEAT TRACK'},
+  hearts:{title:'READ_ME.SYS'},
  };
- const wrapList=(list,label)=>{
-   if(!list)return;
-   list.classList.add('independent-list');
-   [...list.children].forEach((child,i)=>{
-     if(child.classList.contains('independent-window'))return;
-     const title=child.querySelector('h3')?.textContent?.trim()||`${label} ${String(i+1).padStart(2,'0')}`;
-     list.replaceChild(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')} — ${title}`),child);
-   });
+ const makeTitlebar = label => {
+  const bar=document.createElement('div');
+  bar.className='titlebar';
+  const name=document.createElement('span'); name.textContent=label;
+  const controls=document.createElement('div'); controls.className='win-controls';
+  controls.innerHTML='<span aria-hidden="true">_</span><span aria-hidden="true">□</span><span aria-hidden="true">×</span>';
+  bar.append(name,controls); return bar;
  };
- const splitPage=(id,label)=>{
-   const page=document.getElementById(id),outer=page?.querySelector(':scope > .content-window');
-   if(!outer||outer.dataset.splitWindows==='yes')return;
-   const oldBar=outer.querySelector(':scope > .titlebar'),body=outer.querySelector(':scope > .content-body');if(!oldBar||!body)return;
-   const header=document.createElement('div');header.className='chrome content-window section-intro-window';header.append(oldBar);
-   const headBody=document.createElement('div');headBody.className='content-body';header.append(headBody);
-   for(let i=0;i<3&&body.firstElementChild;i++)headBody.append(body.firstElementChild);
-   const fragment=document.createDocumentFragment();fragment.append(header);
-   const listIds={letterList:'LETTER',playlistList:'PLAYLIST',songList:'TRACK'};
-   [...body.children].forEach(node=>{
-     if(listIds[node.id]){wrapList(node,listIds[node.id]);fragment.append(node);}
-     else if(node.id==='songLetter' || node.classList.contains('jar-area') || node.classList.contains('guestbook-layout')){
-       if(node.classList.contains('jar-area')||node.classList.contains('guestbook-layout')){
-         const group=document.createElement('div');group.className='independent-list';
-         [...node.children].forEach((child,i)=>group.append(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')}`)));
-         fragment.append(group);
-       } else fragment.append(makeWindow(node,`${label} // MESSAGE`));
-     } else fragment.append(makeWindow(node,label));
-   });
-   outer.replaceWith(fragment);page.dataset.windowsReady='yes';
+ const makeWindow = (label, bodyNode, extra='') => {
+  const win=document.createElement('article');
+  win.className='chrome independent-window '+extra;
+  win.append(makeTitlebar(label));
+  const body=document.createElement('div'); body.className='independent-window-body';
+  if(bodyNode) body.append(bodyNode);
+  win.append(body); return win;
+ };
+ const makeHeaderWindow = (page, label) => {
+  const original=page.querySelector(':scope > .content-window');
+  if(!original || page.dataset.independentReady==='yes') return;
+  const oldBar=original.querySelector(':scope > .titlebar');
+  const oldBody=original.querySelector(':scope > .content-body');
+  if(!oldBar || !oldBody) return;
+  const header=document.createElement('div');
+  header.className='chrome section-window';
+  header.append(oldBar);
+  const body=document.createElement('div'); body.className='section-window-body';
+  // Only the section intro belongs in the heading window.
+  for(let i=0;i<3 && oldBody.firstElementChild;i++) body.append(oldBody.firstElementChild);
+  header.append(body);
+  const remainder=[...oldBody.children];
+  original.remove();
+  page.insertBefore(header,page.firstChild);
+  remainder.forEach(node=>{
+   if(node.id==='letterList'||node.id==='playlistList'||node.id==='songList'){
+    node.classList.add('independent-list');
+    page.append(node);
+   } else if(page.id==='hearts' && node.classList.contains('jar-area')){
+    const jarVisual=node.querySelector('.jar-visual');
+    const categoryGrid=node.querySelector('#feelingGrid');
+    if(jarVisual) page.append(makeWindow('JAR_OF_HEARTS // PICK A HEART',jarVisual,'jar-independent-window'));
+    if(categoryGrid){
+     categoryGrid.classList.add('independent-list','feeling-window-list');
+     page.append(categoryGrid);
+    }
+   } else if(node.id==='songLetter'){
+    page.append(makeWindow('HEARTBEAT // MESSAGE',node,'song-note-independent'));
+   } else {
+    page.append(makeWindow(label,node));
+   }
+  });
+  page.dataset.independentReady='yes';
+ };
+ const decorateList = (id,kind) => {
+  const list=document.getElementById(id); if(!list) return;
+  list.classList.add('independent-list');
+  [...list.children].forEach((item,index)=>{
+   if(kind==='playlist'){
+    item.classList.add('chrome','independent-window','playlist-independent-window');
+    item.querySelector('.playlist-windowbar')?.classList.add('titlebar');
+   } else if(kind==='song'){
+    item.classList.add('chrome','independent-window','song-independent-window');
+    if(!item.querySelector(':scope > .titlebar')) item.insertBefore(makeTitlebar(`HEARTBEAT // TRACK ${String(index+1).padStart(2,'0')}`),item.firstChild);
+   } else if(kind==='letter'){
+    item.classList.add('chrome','independent-window','letter-independent-window');
+   }
+  });
+ };
+ const decorateFeelings = () => {
+  const grid=document.getElementById('feelingGrid'); if(!grid) return;
+  grid.classList.add('independent-list','feeling-window-list');
+  [...grid.children].forEach((button,index)=>{
+   if(button.classList.contains('feeling-independent-window')) return;
+   const label=button.textContent.trim()||`FEELING ${index+1}`;
+   const win=makeWindow(`READ ME WHEN // ${label.toUpperCase()}`,null,'feeling-independent-window');
+   grid.insertBefore(win,button);
+   win.querySelector('.independent-window-body').append(button);
+  });
+ };
+ const decorateHome = () => {
+  const home=document.getElementById('home'); if(!home||home.dataset.homeWindows==='yes')return;
+  const bottom=home.querySelector(':scope > .home-bottom');
+  if(bottom){
+   bottom.classList.add('chrome','home-bottom-window');
+   const label=bottom.querySelector('.pixel');
+   const bar=makeTitlebar(label?.textContent.trim()||'A PLACE TO COME BACK TO');
+   bottom.insertBefore(bar,bottom.firstChild);
+  }
+  home.dataset.homeWindows='yes';
  };
  const refresh=()=>{
-   splitPage('why','OPEN_LOVE.EXE');splitPage('playlists','SPOTIFY.MP3');splitPage('songs','HEARTBEAT.MP3');splitPage('hearts','READ_ME.SYS');splitPage('guestbook','SEND_LOVE.MSG');
-   wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');
+  Object.entries(pageSpecs).forEach(([id,spec])=>{const page=document.getElementById(id);if(page)makeHeaderWindow(page,spec.title);});
+  decorateList('letterList','letter'); decorateList('playlistList','playlist'); decorateList('songList','song');
+  decorateFeelings(); decorateHome();
  };
- const observer=new MutationObserver(()=>{wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');});
- document.addEventListener('DOMContentLoaded',()=>{refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});});
- if(document.readyState!=='loading'){refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});}
+ refresh();
+ const observer=new MutationObserver(()=>refresh());
+ ['letterList','playlistList','songList','feelingGrid'].forEach(id=>{
+  const el=document.getElementById(id); if(el) observer.observe(el,{childList:true});
+ });
 })();
+
 
 </script></body></html>
