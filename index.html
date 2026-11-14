@@ -632,6 +632,27 @@ body{background-color:#30204c;background-image:linear-gradient(90deg,#ffffff08 1
  .skin-songs .pixel-cd-note{width:76px!important;height:76px!important}
 }
 
+
+/* Reference-matched separate windows: no mega-card around a whole tab */
+.independent-list{display:grid;grid-template-columns:1fr;gap:22px;margin:20px 0 4px;min-width:0}
+.independent-window{overflow:hidden;min-width:0;border:5px solid #f7f4ff;border-radius:9px;background:linear-gradient(145deg,#f5f1fa,#d8cce5);box-shadow:0 8px 0 #180d2b55, inset 0 0 0 1px #b8a8cf}
+.independent-window>.titlebar,.section-intro-window>.titlebar{min-height:58px;padding:12px 17px;background:linear-gradient(100deg,#3c5d9e,#80a8dd 65%,#a9c0e5);color:#fff;font:10px Silkscreen,monospace;letter-spacing:.09em}
+.independent-body{padding:17px 19px;color:#4d4161}
+.section-intro-window{margin-bottom:22px}
+.section-intro-window .content-body{padding:25px 26px 28px}
+.section-intro-window .kicker{font:10px Silkscreen,monospace;letter-spacing:.12em;color:#80649b;margin:3px 0 22px}
+.section-intro-window .section-heading{font:700 clamp(20px,4vw,30px) Orbitron,sans-serif;color:#493568;margin:0 0 10px}
+.section-intro-window .section-intro{font-size:14px;line-height:1.85;color:#5b4e6c;margin:0}
+.independent-list .independent-window .content-body{padding:14px}
+.independent-window .media-card,.independent-window .letter-notification,.independent-window .letter-empty{border:0;border-radius:0;box-shadow:none;background:transparent;padding:0}
+.independent-window .song-card{gap:12px}
+.independent-window .letter-notification{padding:0}
+.independent-window .jar-visual,.independent-window .feeling-grid{min-height:220px}
+#playlists .independent-list,#songs .independent-list{gap:24px}
+#playlists .independent-window .content-body,#songs .independent-window .content-body{padding:18px}
+#playlists .playlist-grid,#songs .song-grid{display:grid;grid-template-columns:1fr;gap:0}
+@media(max-width:720px){.section-intro-window .content-body{padding:19px 17px 22px}.independent-window>.titlebar,.section-intro-window>.titlebar{min-height:48px;padding:10px 12px;font-size:8px}.independent-body{padding:13px}.independent-list{gap:17px}}
+
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
@@ -850,4 +871,55 @@ function renderEverything(){renderLetters();renderFeelings();renderSongs();rende
 await authReady;if(firebaseConfigured)await loadCloud();renderEverything();void renderGuestbookLog();
 $('minimizePlayer').addEventListener('click',()=>{$('playerDock').classList.toggle('minimized');$('playerBody').classList.toggle('hidden');});$('hidePlayer').addEventListener('click',()=>$('playerDock').classList.add('hidden'));
 $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date()).toUpperCase();
+
+/* Independent desktop windows across every public folder */
+(function(){
+ const makeWindow=(node,label)=>{
+   if(node.classList && node.classList.contains('independent-window')) return node;
+   const win=document.createElement('div');win.className='chrome independent-window';
+   const bar=document.createElement('div');bar.className='titlebar';
+   const name=document.createElement('span');name.textContent=label||'LITTLE_HAVEN.EXE';
+   const controls=document.createElement('div');controls.className='win-controls';controls.innerHTML='<span>_</span><span>□</span><span>×</span>';
+   bar.append(name,controls);const body=document.createElement('div');body.className='content-body independent-body';
+   win.append(bar,body);body.append(node);return win;
+ };
+ const wrapList=(list,label)=>{
+   if(!list)return;
+   list.classList.add('independent-list');
+   [...list.children].forEach((child,i)=>{
+     if(child.classList.contains('independent-window'))return;
+     const title=child.querySelector('h3')?.textContent?.trim()||`${label} ${String(i+1).padStart(2,'0')}`;
+     list.replaceChild(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')} — ${title}`),child);
+   });
+ };
+ const splitPage=(id,label)=>{
+   const page=document.getElementById(id),outer=page?.querySelector(':scope > .content-window');
+   if(!outer||outer.dataset.splitWindows==='yes')return;
+   const oldBar=outer.querySelector(':scope > .titlebar'),body=outer.querySelector(':scope > .content-body');if(!oldBar||!body)return;
+   const header=document.createElement('div');header.className='chrome content-window section-intro-window';header.append(oldBar);
+   const headBody=document.createElement('div');headBody.className='content-body';header.append(headBody);
+   for(let i=0;i<3&&body.firstElementChild;i++)headBody.append(body.firstElementChild);
+   const fragment=document.createDocumentFragment();fragment.append(header);
+   const listIds={letterList:'LETTER',playlistList:'PLAYLIST',songList:'TRACK'};
+   [...body.children].forEach(node=>{
+     if(listIds[node.id]){wrapList(node,listIds[node.id]);fragment.append(node);}
+     else if(node.id==='songLetter' || node.classList.contains('jar-area') || node.classList.contains('guestbook-layout')){
+       if(node.classList.contains('jar-area')||node.classList.contains('guestbook-layout')){
+         const group=document.createElement('div');group.className='independent-list';
+         [...node.children].forEach((child,i)=>group.append(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')}`)));
+         fragment.append(group);
+       } else fragment.append(makeWindow(node,`${label} // MESSAGE`));
+     } else fragment.append(makeWindow(node,label));
+   });
+   outer.replaceWith(fragment);page.dataset.windowsReady='yes';
+ };
+ const refresh=()=>{
+   splitPage('why','OPEN_LOVE.EXE');splitPage('playlists','SPOTIFY.MP3');splitPage('songs','HEARTBEAT.MP3');splitPage('hearts','READ_ME.SYS');splitPage('guestbook','SEND_LOVE.MSG');
+   wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');
+ };
+ const observer=new MutationObserver(()=>{wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');});
+ document.addEventListener('DOMContentLoaded',()=>{refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});});
+ if(document.readyState!=='loading'){refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});}
+})();
+
 </script></body></html>
