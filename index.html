@@ -654,142 +654,58 @@ body{background-color:#30204c;background-image:linear-gradient(90deg,#ffffff08 1
 @media(max-width:720px){.section-intro-window .content-body{padding:19px 17px 22px}.independent-window>.titlebar,.section-intro-window>.titlebar{min-height:48px;padding:10px 12px;font-size:8px}.independent-body{padding:13px}.independent-list{gap:17px}}
 
 
-
-/* === TRUE SIBLING WINDOWS: section header and content windows share the page === */
-.page.window-page {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 18px;
-  min-width: 0;
-}
+/* Independent desktop windows: each visible card is a direct child of its tab. */
+.page.window-page { display:block; width:100%; min-width:0; }
 .page.window-page > .section-window,
 .page.window-page > .independent-window,
 .page.window-page > .home-bottom-window {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0;
-  border: 2px solid #fff;
-  border-radius: 7px;
-  overflow: hidden;
-  background: linear-gradient(135deg,#f7f5fc 0%,#e9e4f1 58%,#d9d0e5 100%);
-  box-shadow: inset 1px 1px 0 rgba(255,255,255,.95),
-              inset -2px -2px 0 #b9abc9,
-              0 6px 0 rgba(22,10,39,.22),
-              0 11px 22px rgba(17,7,31,.15);
+  display:block; width:100%; max-width:100%; min-width:0;
+  margin:0 0 19px; overflow:hidden;
+  border:4px solid #f8f6ff; border-radius:7px;
+  background:linear-gradient(145deg,#f4f1fa 0%,#e5deed 62%,#d8cde4 100%);
+  box-shadow:0 6px 0 rgba(24,12,42,.30),inset 0 0 0 1px #c7bad8;
 }
 .page.window-page > .section-window > .titlebar,
-.page.window-page > .independent-window > .window-titlebar,
-.page.window-page > .home-bottom-window > .window-titlebar {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  min-height:39px;
-  padding:9px 12px;
-  color:#fff;
-  background:linear-gradient(90deg,#31518f 0%,#648bc5 54%,#a9c4e7 100%);
+.page.window-page > .independent-window > .titlebar,
+.page.window-page > .home-bottom-window > .titlebar {
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:42px; padding:9px 13px; color:#fff;
+  background:linear-gradient(100deg,#35548f,#7399ce 62%,#a9c1e3);
   border-bottom:2px solid #fff;
-  font:9px Silkscreen,monospace;
-  letter-spacing:.08em;
-  text-shadow:1px 1px #263e70;
+  font:9px Silkscreen,monospace; letter-spacing:.09em;
 }
 .page.window-page > .section-window > .content-body {
-  padding:clamp(17px,3.4vw,30px);
-  color:#594c68;
+  padding:clamp(17px,3vw,29px); color:#584b68;
 }
-.section-window .kicker { color:#82669b; }
-.section-window .section-heading {
-  color:#463768;
-  margin:10px 0;
-  font-family:Silkscreen,monospace;
-}
-.section-window .section-intro { margin:0; line-height:1.8; }
-.page.window-page > .independent-list { display:contents !important; }
-.page.window-page > .independent-window {
-  margin:0;
-  padding:0;
-}
-.page.window-page > .independent-window.letter-notification {
-  background:linear-gradient(145deg,#fffaf3,#f3eafa 58%,#e5e7f5);
-}
-.page.window-page > .independent-window.playlist-window {
-  background:linear-gradient(145deg,#e5f2fb,#f0e5f6 58%,#dcebe9);
-}
-.page.window-page > .independent-window.playlist-window-1 {
-  background:linear-gradient(145deg,#f8e8f1,#eee5f8 58%,#dceef4);
-}
-.page.window-page > .independent-window.playlist-window-2 {
-  background:linear-gradient(145deg,#e8f4ed,#e4e8f8 58%,#f7e8e3);
-}
-.page.window-page > .independent-window.playlist-window-3 {
-  background:linear-gradient(145deg,#f9eddf,#ece4f7 58%,#e3eff5);
-}
-.page.window-page > .independent-window.song-card {
-  background:linear-gradient(145deg,#f3eafa,#e4e8f7 58%,#dcefe9);
-}
-.page.window-page > .independent-window.song-card-1 {
-  background:linear-gradient(145deg,#f9e8ee,#eee5f6 58%,#e1edf4);
-}
-.page.window-page > .independent-window.song-card-2 {
-  background:linear-gradient(145deg,#e7f4ed,#e4e9f8 58%,#f7e8df);
-}
-.page.window-page > .independent-window.song-card-3 {
-  background:linear-gradient(145deg,#e5eff9,#f5e8f0 58%,#f7eddf);
-}
-.independent-window .window-titlebar {
-  display:flex; align-items:center; justify-content:space-between;
-  min-height:34px; padding:8px 12px;
-  color:#fff; background:linear-gradient(90deg,#5879a8,#8e9fc7);
-  border-bottom:1px solid rgba(255,255,255,.9);
-  font:8px Silkscreen,monospace; letter-spacing:.08em;
-}
-.independent-window .independent-content { min-width:0; padding:13px; }
-.letter-notification .letter-notice-view,
-.letter-notification .letter-open-view { border:0; border-radius:0; box-shadow:none; }
-.letter-notification .notice-windowbar { border-radius:0; }
-.playlist-window .playlist-windowbar { border-radius:0; }
-.playlist-window .playlist-window-inner { min-width:0; }
-.playlist-window iframe,
-.playlist-window .spotify-frame {
-  display:block; width:100% !important; max-width:100% !important;
-  min-width:0 !important; border:0;
-}
-.playlist-window iframe { height:352px; }
-.song-card .mixtape-flip { width:100%; max-width:100%; }
-.song-card .mixtape-front { border-radius:0 0 5px 5px; }
+.page.window-page > .section-window .kicker { color:#80649b; }
+.page.window-page > .section-window .section-heading { color:#463768; margin:12px 0; }
+.page.window-page > .section-window .section-intro { margin:0; line-height:1.8; }
+.page.window-page > .independent-window > .content-body { padding:14px; min-width:0; }
+.page.window-page > .window-staging { display:none !important; }
+.page.window-page > .independent-window.letter-item { background:linear-gradient(145deg,#fffaf3,#f2eafa 65%,#e5e8f5); }
+.page.window-page > .independent-window.playlist-item { background:linear-gradient(145deg,#e5f2fb,#f1e6f7 60%,#dcece8); }
+.page.window-page > .independent-window.track-item { background:linear-gradient(145deg,#f1eafa,#e4e9f7 60%,#dcefe9); }
 .page.window-page > .independent-window.jar-window { background:linear-gradient(145deg,#e8f4ef,#e4eafa 60%,#f4e4ef); }
-.jar-window .independent-content { padding:0; }
-.jar-window .jar-visual { border:0; border-radius:0; margin:0; }
-.page.window-page > .independent-window.feeling-window {
-  background:linear-gradient(145deg,#f8f5ff,#e5dff0);
+.page.window-page > .independent-window.feeling-heading-window { background:linear-gradient(145deg,#f8f5ff,#e5deef); }
+.page.window-page > .independent-window.feeling-item { background:linear-gradient(145deg,#f5f1fb,#e5e0f0); }
+.page.window-page > .independent-window.guestbook-window { background:linear-gradient(145deg,#e9f0fb,#f1e7f5); }
+.page.window-page > .independent-window.playlist-item iframe {
+  display:block; width:100% !important; max-width:100% !important;
+  min-width:0 !important; height:352px; border:0;
 }
-.feeling-window .feeling { width:100%; min-height:54px; border-radius:4px; }
-.page.window-page > .feeling-heading-window { background:linear-gradient(145deg,#f5f1fb,#e5deef); }
-.feeling-heading-window .independent-content { padding:14px 17px; color:#594c68; }
-.page.window-page > .independent-window.song-note-window { background:#f4eff9; }
 .page.window-page > .home-bottom-window { padding:0; }
-.home-bottom-window .home-bottom { margin:0; border:0; border-radius:0; box-shadow:none; background:transparent; }
-.home-bottom-window .home-bottom .pixel { color:#82669b; }
-#guestbook.window-page > .independent-window { padding:0; }
-@media (max-width:720px) {
-  .page.window-page { gap:14px; }
+.page.window-page > .home-bottom-window .home-bottom {
+  margin:0; border:0; border-radius:0; box-shadow:none; background:transparent;
+}
+.page.window-page > .home-bottom-window .home-shortcuts { padding:0 14px 14px; }
+@media(max-width:720px) {
+  .page.window-page > .section-window,
+  .page.window-page > .independent-window,
+  .page.window-page > .home-bottom-window { margin-bottom:15px; border-width:3px; }
   .page.window-page > .section-window > .content-body { padding:16px; }
-  .page.window-page > .independent-window { width:100%; }
-  .playlist-window iframe { height:352px; }
-  .independent-window .independent-content { padding:11px; }
+  .page.window-page > .independent-window > .content-body { padding:10px; }
 }
 
-
-/* Homepage's second sibling window */
-.home-bottom.home-bottom-window{margin-top:0;padding:0;border:2px solid #fff;border-radius:7px;background:linear-gradient(135deg,#f8f7ff,#e4dced);color:#554768;box-shadow:inset 1px 1px 0 #fff,inset -2px -2px 0 #b7a9ca,0 6px 0 rgba(22,10,39,.22),0 11px 22px rgba(17,7,31,.15);overflow:hidden}
-.home-bottom.home-bottom-window > .window-titlebar{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;min-height:39px;background:linear-gradient(90deg,#31518f,#648bc5 54%,#a9c4e7);border-bottom:2px solid #fff;color:white;font:9px Silkscreen,monospace;letter-spacing:.08em}
-.home-bottom.home-bottom-window > p,.home-bottom.home-bottom-window > .home-shortcuts{margin-left:17px;margin-right:17px}
-.home-bottom.home-bottom-window > .pixel{display:block;margin:16px 17px 0;color:#82669b}
-.home-bottom.home-bottom-window > p{color:#554768}
-.home-bottom.home-bottom-window .home-shortcuts button{color:#314b7b;background:linear-gradient(#fff,#d9e5f7);border:1px solid #fff;box-shadow:0 3px #8ba1c5}
 </style><meta name="description" content="Tangi's Little Haven — a retro Y2K little universe."></head>
 <body>
 <section id="loginScreen" class="login-screen"><div class="entry-y2k-art" aria-hidden="true"><span class="entry-disc"></span><span class="entry-cassette"><i></i><b></b></span><span class="entry-butterfly">✧</span><span class="entry-star entry-star-one">✦</span><span class="entry-star entry-star-two">✧</span><span class="entry-note">♫</span><span class="entry-orbit"></span></div><div class="chrome login-card"><div class="titlebar"><span>WELCOME.EXE — ACCESS PORTAL</span><div class="win-controls"><span>_</span><span>□</span><span>×</span></div></div><div class="login-inner"><div class="pixel" style="font-size:9px;color:#8054ad">LOGGED INTO: MY HEART'S HOMEPAGE</div><h1>Tangi's Little Haven</h1><p class="sub">System Status: Heartbeat synced with Tangi</p><form id="loginForm"><div class="field"><label for="userId">USER ID</label><input id="userId" autocomplete="username" placeholder="Enter your user ID" required></div><div class="field"><label for="password">PASSWORD</label><div class="password-wrap"><input id="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">SHOW</button></div></div><button class="primary" type="submit" style="width:100%;margin-top:8px">ENTER THE HAVEN →</button><div id="loginError" class="error" aria-live="polite"></div></form><div class="hint" id="passwordHint">PASSWORD HINT: <b>Your favorite song. Lowercase, with a space.</b></div></div></div></section>
@@ -1009,235 +925,170 @@ await authReady;if(firebaseConfigured)await loadCloud();renderEverything();void 
 $('minimizePlayer').addEventListener('click',()=>{$('playerDock').classList.toggle('minimized');$('playerBody').classList.toggle('hidden');});$('hidePlayer').addEventListener('click',()=>$('playerDock').classList.add('hidden'));
 $('clock').textContent=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'}).format(new Date()).toUpperCase();
 
-/* Independent desktop windows across every public folder */
-(function(){
- const makeWindow=(node,label)=>{
-   if(node.classList && node.classList.contains('independent-window')) return node;
-   const win=document.createElement('div');win.className='chrome independent-window';
-   const bar=document.createElement('div');bar.className='titlebar';
-   const name=document.createElement('span');name.textContent=label||'LITTLE_HAVEN.EXE';
-   const controls=document.createElement('div');controls.className='win-controls';controls.innerHTML='<span>_</span><span>□</span><span>×</span>';
-   bar.append(name,controls);const body=document.createElement('div');body.className='content-body independent-body';
-   win.append(bar,body);body.append(node);return win;
- };
- const wrapList=(list,label)=>{
-   if(!list)return;
-   list.classList.add('independent-list');
-   [...list.children].forEach((child,i)=>{
-     if(child.classList.contains('independent-window'))return;
-     const title=child.querySelector('h3')?.textContent?.trim()||`${label} ${String(i+1).padStart(2,'0')}`;
-     list.replaceChild(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')} — ${title}`),child);
-   });
- };
- const splitPage=(id,label)=>{
-   const page=document.getElementById(id),outer=page?.querySelector(':scope > .content-window');
-   if(!outer||outer.dataset.splitWindows==='yes')return;
-   const oldBar=outer.querySelector(':scope > .titlebar'),body=outer.querySelector(':scope > .content-body');if(!oldBar||!body)return;
-   const header=document.createElement('div');header.className='chrome content-window section-intro-window';header.append(oldBar);
-   const headBody=document.createElement('div');headBody.className='content-body';header.append(headBody);
-   for(let i=0;i<3&&body.firstElementChild;i++)headBody.append(body.firstElementChild);
-   const fragment=document.createDocumentFragment();fragment.append(header);
-   const listIds={letterList:'LETTER',playlistList:'PLAYLIST',songList:'TRACK'};
-   [...body.children].forEach(node=>{
-     if(listIds[node.id]){wrapList(node,listIds[node.id]);fragment.append(node);}
-     else if(node.id==='songLetter' || node.classList.contains('jar-area') || node.classList.contains('guestbook-layout')){
-       if(node.classList.contains('jar-area')||node.classList.contains('guestbook-layout')){
-         const group=document.createElement('div');group.className='independent-list';
-         [...node.children].forEach((child,i)=>group.append(makeWindow(child,`${label} // ${String(i+1).padStart(2,'0')}`)));
-         fragment.append(group);
-       } else fragment.append(makeWindow(node,`${label} // MESSAGE`));
-     } else fragment.append(makeWindow(node,label));
-   });
-   outer.replaceWith(fragment);page.dataset.windowsReady='yes';
- };
- const refresh=()=>{
-   splitPage('why','OPEN_LOVE.EXE');splitPage('playlists','SPOTIFY.MP3');splitPage('songs','HEARTBEAT.MP3');splitPage('hearts','READ_ME.SYS');splitPage('guestbook','SEND_LOVE.MSG');
-   wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');
- };
- const observer=new MutationObserver(()=>{wrapList(document.getElementById('letterList'),'LETTER');wrapList(document.getElementById('playlistList'),'PLAYLIST');wrapList(document.getElementById('songList'),'TRACK');});
- document.addEventListener('DOMContentLoaded',()=>{refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});});
- if(document.readyState!=='loading'){refresh();['letterList','playlistList','songList'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el,{childList:true});});}
-})();
 
-</script><script>
-
-/* Structural layout: every content window is a direct child of its tab page.
-   The list containers remain only as display:contents hooks for the existing renderers. */
+/* Independent sibling windows; existing content editors keep their staging nodes. */
 (function () {
-  'use strict';
-  const $ = (id) => document.getElementById(id);
-  const specs = {
-    why: { label: 'OPEN_LOVE.EXE' },
-    playlists: { label: 'SPOTIFY.MP3' },
-    songs: { label: 'HEARTBEAT.MP3' },
-    hearts: { label: 'READ_ME.SYS' },
-    guestbook: { label: 'MESSAGE.EXE — LOVE NOTE FROM YOU' }
-  };
+  const get = id => document.getElementById(id);
 
-  function titlebar(label, className='window-titlebar') {
+  function titlebar(label) {
     const bar = document.createElement('div');
-    bar.className = className;
+    bar.className = 'titlebar';
     const name = document.createElement('span');
     name.textContent = label;
-    const controls = document.createElement('span');
+    const controls = document.createElement('div');
     controls.className = 'win-controls';
-    controls.setAttribute('aria-hidden','true');
+    controls.setAttribute('aria-hidden', 'true');
     controls.innerHTML = '<span>_</span><span>□</span><span>×</span>';
     bar.append(name, controls);
     return bar;
   }
 
-  function independentWindow(label, content, extraClass='') {
+  function windowFor(label, content, kind) {
     const win = document.createElement('article');
-    win.className = 'chrome independent-window ' + extraClass;
+    win.className = 'chrome independent-window ' + (kind || '');
     win.append(titlebar(label));
     const body = document.createElement('div');
-    body.className = 'independent-content';
-    if (content) body.append(content);
+    body.className = 'content-body independent-body';
+    body.append(content);
     win.append(body);
     return win;
   }
 
-  function makeSectionHeader(page, label, original) {
-    const oldBar = original.querySelector(':scope > .titlebar');
-    const oldBody = original.querySelector(':scope > .content-body');
-    if (!oldBar || !oldBody) return null;
-    const header = document.createElement('div');
-    header.className = 'chrome section-window';
-    header.append(oldBar);
-    const body = document.createElement('div');
-    body.className = 'content-body';
-    for (let n = 0; n < 3 && oldBody.firstElementChild; n++) {
-      body.append(oldBody.firstElementChild);
-    }
-    header.append(body);
-    return { header, body, oldBody };
-  }
+  function separateHeading(pageId) {
+    const page = get(pageId);
+    if (!page || page.dataset.headingSeparated === 'yes') return null;
+    const oldWindow = page.querySelector(':scope > .content-window');
+    const oldBar = oldWindow?.querySelector(':scope > .titlebar');
+    const oldBody = oldWindow?.querySelector(':scope > .content-body');
+    if (!oldWindow || !oldBar || !oldBody) return null;
 
-  function splitSimplePage(id, label) {
-    const page = $(id);
-    if (!page || page.dataset.siblingWindowsReady === 'yes') return;
-    const original = page.querySelector(':scope > .content-window');
-    if (!original) return;
-    const parts = makeSectionHeader(page, label, original);
-    if (!parts) return;
-    const remainder = Array.from(parts.oldBody.children);
-    original.remove();
+    const heading = document.createElement('section');
+    heading.className = 'chrome section-window';
+    heading.append(oldBar);
+    const content = document.createElement('div');
+    content.className = 'content-body';
+    for (let i = 0; i < 3 && oldBody.firstElementChild; i++) {
+      content.append(oldBody.firstElementChild);
+    }
+    heading.append(content);
+    oldWindow.replaceWith(heading);
     page.classList.add('window-page');
-    page.append(parts.header);
+    page.dataset.headingSeparated = 'yes';
+    return { page, oldBody };
+  }
 
-    if (id === 'hearts') {
-      const jarArea = remainder.find(n => n.classList.contains('jar-area'));
-      if (jarArea) {
-        const jarVisual = jarArea.querySelector('.jar-visual');
-        const feelingGrid = jarArea.querySelector('#feelingGrid');
-        const feelingLabel = jarArea.querySelector('.pixel');
-        if (jarVisual) page.append(independentWindow('JAR_OF_HEARTS.SYS // PICK A HEART', jarVisual, 'jar-window'));
-        if (feelingLabel) page.append(independentWindow('READ_ME_WHEN // CATEGORIES', feelingLabel, 'feeling-heading-window'));
-        if (feelingGrid) {
-          feelingGrid.classList.add('independent-list');
-          page.append(feelingGrid);
-        }
-        jarArea.remove();
+  function promoteList(page, list, id, label) {
+    if (!list) return;
+    list.classList.add('window-staging');
+    list.setAttribute('aria-hidden', 'true');
+
+    const promote = () => {
+      if (!list.children.length) return;
+      page.querySelectorAll(':scope > [data-window-source="' + id + '"]')
+        .forEach(old => old.remove());
+
+      Array.from(list.children).forEach((card, i) => {
+        const n = String(i + 1).padStart(2, '0');
+        const win = windowFor(label + ' // ' + n, card, label.toLowerCase() + '-item');
+        win.dataset.windowSource = id;
+        page.append(win);
+      });
+    };
+
+    promote();
+    const observer = new MutationObserver(() => {
+      if (list.children.length) promote();
+    });
+    observer.observe(list, { childList: true });
+  }
+
+  function splitOpenLove() {
+    const parts = separateHeading('why');
+    if (!parts) return;
+    const { page, oldBody } = parts;
+    const list = get('letterList');
+    if (list) {
+      page.append(list);
+      promoteList(page, list, 'letterList', 'LETTER');
+    }
+    Array.from(oldBody.children).forEach(node => {
+      if (node !== list) page.append(node);
+    });
+  }
+
+  function splitMedia(pageId, listId, label) {
+    const parts = separateHeading(pageId);
+    if (!parts) return;
+    const { page, oldBody } = parts;
+    const list = get(listId);
+    if (list) {
+      page.append(list);
+      promoteList(page, list, listId, label);
+    }
+    Array.from(oldBody.children).forEach(node => {
+      if (node === list) return;
+      if (node.id === 'songLetter') {
+        node.classList.add('chrome', 'independent-window', 'song-note-window');
       }
-      remainder.filter(n => n !== jarArea).forEach(n => page.append(n));
-    } else {
-      remainder.forEach(n => page.append(n));
-    }
-    page.dataset.siblingWindowsReady = 'yes';
+      page.append(node);
+    });
   }
 
-  function decorateRenderedItems() {
-    const letters = $('letterList');
-    if (letters) {
-      letters.classList.add('independent-list');
-      Array.from(letters.children).forEach((item, i) => {
-        if (item.dataset.windowDecorated === 'yes') return;
-        item.classList.add('chrome','independent-window');
-        item.dataset.windowDecorated = 'yes';
-        item.setAttribute('aria-label', 'Letter notification ' + (i + 1));
-      });
-    }
-    const playlists = $('playlistList');
-    if (playlists) {
-      playlists.classList.add('independent-list');
-      Array.from(playlists.children).forEach((item) => {
-        if (item.dataset.windowDecorated === 'yes') return;
-        item.classList.add('chrome','independent-window');
-        item.dataset.windowDecorated = 'yes';
-        const frame = item.querySelector('iframe');
-        if (frame) {
-          frame.removeAttribute('width');
-          frame.style.width = '100%';
-          frame.style.maxWidth = '100%';
-          frame.style.display = 'block';
-        }
-      });
-    }
-    const songs = $('songList');
-    if (songs) {
-      songs.classList.add('independent-list');
-      Array.from(songs.children).forEach((item, i) => {
-        if (item.dataset.windowDecorated === 'yes') return;
-        item.classList.add('chrome','independent-window');
-        item.insertBefore(titlebar('HEARTBEAT.MP3 // TRACK ' + String(i + 1).padStart(2,'0')), item.firstChild);
-        item.dataset.windowDecorated = 'yes';
-      });
-    }
-    const feelings = $('feelingGrid');
-    if (feelings) {
-      Array.from(feelings.children).forEach((button, i) => {
-        if (button.dataset.windowWrapped === 'yes') return;
-        const label = (button.textContent || '').trim().toUpperCase() || ('FEELING ' + (i + 1));
-        const win = independentWindow('READ ME WHEN // ' + label, button, 'feeling-window');
-        button.dataset.windowWrapped = 'yes';
-        feelings.append(win);
-      });
-    }
-  }
+  function splitReadMe() {
+    const parts = separateHeading('hearts');
+    if (!parts) return;
+    const { page, oldBody } = parts;
+    const jarArea = oldBody.querySelector('.jar-area');
+    if (!jarArea) return;
 
-  function splitHomeBottom() {
-    const home = $('home');
-    if (!home || home.dataset.homeBottomSplit === 'yes') return;
-    const bottom = home.querySelector(':scope > .home-bottom');
-    if (bottom) {
-      bottom.classList.add('chrome','home-bottom-window');
-      bottom.insertBefore(titlebar('A PLACE TO COME BACK TO'), bottom.firstChild);
+    const jarVisual = jarArea.querySelector('.jar-visual');
+    const feelingColumn = jarArea.children[1];
+    const feelingLabel = feelingColumn?.querySelector('.pixel');
+    const grid = get('feelingGrid');
+
+    if (jarVisual) page.append(windowFor('JAR_OF_HEARTS.SYS // PICK A HEART', jarVisual, 'jar-window'));
+    if (feelingLabel) page.append(windowFor('READ_ME_WHEN // CATEGORIES', feelingLabel, 'feeling-heading-window'));
+
+    // Move the existing render target out before removing jarArea. The current
+    // renderer can continue updating it; each button becomes its own page window.
+    if (grid) {
+      page.append(grid);
+      promoteList(page, grid, 'feelingGrid', 'FEELING');
     }
-    home.dataset.homeBottomSplit = 'yes';
+    jarArea.remove();
+    Array.from(oldBody.children).forEach(node => page.append(node));
   }
 
   function splitGuestbook() {
-    const page = $('guestbook');
-    if (!page || page.dataset.siblingWindowsReady === 'yes') return;
-    const original = page.querySelector(':scope > .content-window');
-    if (!original) return;
-    const parts = makeSectionHeader(page, 'MESSAGE.EXE', original);
+    const parts = separateHeading('guestbook');
     if (!parts) return;
-    const layout = parts.oldBody.querySelector('.guestbook-layout');
-    original.remove();
-    page.classList.add('window-page');
-    page.append(parts.header);
-    if (layout) page.append(independentWindow('LOVE_NOTE_INBOX.EXE', layout, 'guestbook-window'));
-    page.dataset.siblingWindowsReady = 'yes';
+    const { page, oldBody } = parts;
+    const layout = oldBody.querySelector('.guestbook-layout');
+    if (layout) {
+      page.append(windowFor('LOVE_NOTE_INBOX.EXE', layout, 'guestbook-window'));
+      layout.remove();
+    }
+    Array.from(oldBody.children).forEach(node => page.append(node));
   }
 
-  function run() {
-    Object.entries(specs).forEach(([id, spec]) => {
-      if (id !== 'guestbook') splitSimplePage(id, spec.label);
-    });
-    splitGuestbook();
-    splitHomeBottom();
-    decorateRenderedItems();
+  function splitHome() {
+    const home = get('home');
+    if (!home || home.dataset.homeWindowsReady === 'yes') return;
+    const bottom = home.querySelector(':scope > .home-bottom');
+    if (bottom) {
+      bottom.classList.add('chrome', 'home-bottom-window');
+      bottom.insertBefore(titlebar('A PLACE TO COME BACK TO'), bottom.firstChild);
+    }
+    home.dataset.homeWindowsReady = 'yes';
   }
 
-  run();
-  const observer = new MutationObserver(() => decorateRenderedItems());
-  ['letterList','playlistList','songList','feelingGrid'].forEach(id => {
-    const node = $(id);
-    if (node) observer.observe(node, { childList: true });
-  });
+  splitHome();
+  splitOpenLove();
+  splitMedia('playlists', 'playlistList', 'PLAYLIST');
+  splitMedia('songs', 'songList', 'TRACK');
+  splitReadMe();
+  splitGuestbook();
 })();
 
-</script>
-</body></html>
+
+</script></body></html>
